@@ -1,42 +1,23 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Zyc8904.GitHub.io by zyc8904</title>
+---
+layout: default
+---
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Zyc8904.GitHub.io</h1>
-        <p>My Blog</p>
+<div class="home">
 
+  <h1 class="page-heading">Posts</h1>
 
-        <p class="view"><a href="https://github.com/zyc8904">View My GitHub Profile</a></p>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-      </header>
-      <section>
-        <h1>
-<a id="我的githubjekyll博客" class="anchor" href="#%E6%88%91%E7%9A%84githubjekyll%E5%8D%9A%E5%AE%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>我的github/jekyll博客</h1>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-<ul>
-<li>我用了一下的技术</li>
-<li><strong>github</strong></li>
-<li><strong>jekyll</strong></li>
-</ul>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
-</html>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
