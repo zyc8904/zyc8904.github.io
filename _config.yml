@@ -9,7 +9,7 @@
 title: Pwnny's Blog
 email: 13971099040@163.com
 description: > # this means to ignore newlines until "baseurl:"
-  What youth deemed crystal,age finds out was dew.
+  What youth deemed crystal,age finds out was dew.<br/>
   青春眼中的水晶，在岁月看来只是露珠。
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "pwnny.cn" # the base hostname & protocol for your site
