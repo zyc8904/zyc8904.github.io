@@ -13,7 +13,7 @@ categories: reproduced
 
 通过查看HTML代码发现作者果然留下了一些信息，可以去twitter上表达对他的膜拜之情了！
 
-![author](pwnny.cn/assets/author.PNG)
+![author](pwnny.cn/assets/images/motherfucker/author.PNG)
 
 所以我现在做网站都是本着尽量少的设计去的，当然这篇文章我必须搬到我的博客来，永久留着，不时拿出来提醒自己。
 
