@@ -273,6 +273,7 @@
 /*loading bar*/
 #progress{
 	position: fixed;
+    z-index: 9999999;
 	height: 2px;
 	background: #b91f1f;
 	transition: opacity 500ms linear;
@@ -282,6 +283,7 @@
 }
 #progress span{
 	position: absolute;
+    z-index: 9999999;
 	height: 2px;
 	-webkit-box-shadow: 1px 0 6px 1px #B91F1F;
 	-webkit-border-radius: 100%;
