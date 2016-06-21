@@ -274,35 +274,40 @@
 /*loading bar*/
 #progress{
 	position: fixed;
-    z-index: 9999999;
 	height: 2.5px;
+    -o-box-shadow: 0 1px 10px 1px #F4CED5;
+    -ms-box-shadow: 0 1px 10px 1px #F4CED5;
+    -moz-box-shadow: 0 1px 10px 1px #F4CED5;
+	-webkit-box-shadow: 0 1px 10px 1px #F4CED5;
+    box-shadow: 0 1px 10px 1px #F4CED5;
 	background: #EF5875;
-	transition: opacity 500ms linear;
+	transition: opacity 600ms linear;
 }
 #progress.done{
 	opacity: 0;
 }
-#progress span{
-	position: absolute;
-    z-index: 9999999;
-	height: 2.5px;
-	-webkit-box-shadow: 1px 0 6px 1px #EF5875;
-	-webkit-border-radius: 100%;
-	opacity: 1;
-	width: 35px;
-	right: -10px;
-	-webkit-animation: pulse 2s ease-out 0s infinite;
+@-o-keyframes pulse{
+	0%{width:0;}
+	100%{width: 100%;}
+}
+@-moz-keyframes pulse{
+	0%{width:0;}
+	100%{width: 100%;}
 }
 @-webkit-keyframes pulse{
-	30%{
-		opacity: .6;
-	}
-	60%{
-		opacity: 0;
-	}
-	100%{
-		opacity: .6;
-	}
+	0%{width:0;}
+	100%{width: 100%;}
+}
+@keyframes pulse{
+	0%{width:0;}
+	100%{width: 100%;}
+}
+#progress{
+    -o-animation: pulse 1.75s;
+    -moz-animation: pulse 1.75s;
+    -ms-animation: pulse 1.75s;
+	-webkit-animation: pulse 1.75s;
+    animation: pulse 1.75s;
 }
 /*主页*/
 #box{
