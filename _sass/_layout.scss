@@ -2,7 +2,7 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
+    //border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
 
@@ -275,7 +275,7 @@
 	position: fixed;
     z-index: 9999999;
 	height: 2px;
-	background: white;
+	background: #EF5875;
 	transition: opacity 500ms linear;
 }
 #progress.done{
@@ -285,7 +285,7 @@
 	position: absolute;
     z-index: 9999999;
 	height: 2px;
-	-webkit-box-shadow: 1px 0 6px 1px white;
+	-webkit-box-shadow: 1px 0 6px 1px #EF5875;
 	-webkit-border-radius: 100%;
 	opacity: 1;
 	width: 10px;
