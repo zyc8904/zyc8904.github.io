@@ -275,7 +275,7 @@
 	position: fixed;
     z-index: 9999999;
 	height: 5px;
-	background: #b91f1f;
+	background: white;
 	transition: opacity 500ms linear;
 }
 #progress.done{
@@ -285,7 +285,7 @@
 	position: absolute;
     z-index: 9999999;
 	height: 5px;
-	-webkit-box-shadow: 1px 0 6px 1px #B91F1F;
+	-webkit-box-shadow: 1px 0 6px 1px white;
 	-webkit-border-radius: 100%;
 	opacity: 1;
 	width: 10px;
