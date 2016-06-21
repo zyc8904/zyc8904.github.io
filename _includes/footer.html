@@ -41,9 +41,19 @@
 		//wanker
 			$(function() {
 			  // Customize the delay or duration defined in milliseconds
-			  $('[data-wanker]').wanker({delay:2000,duration:680});
+			  $('[data-wanker]').wanker({delay:3000,duration:680});
 			});
-			
+    //loading bar
+    $({property: 0}).animate({property: 100},{
+				duration: 3000,
+				step: function(){
+					var percentage = Math.round(this.property);
+					$("#progress").css("width", percentage+"%");
+					if(percentage == 100){
+						$("#progress").addClass("done");
+					}
+				}
+			});	
 		//console.log信息
 		console.group("彩蛋.bar");
 		console.log("%c这个网站有彩蛋！！","font-size:25px;color:red;");

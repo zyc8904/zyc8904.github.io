@@ -270,3 +270,34 @@
 	position: absolute;
 	right: 40%;
 }
+/*loading bar*/
+#progress{
+	position: fixed;
+	height: 2px;
+	background: #b91f1f;
+	transition: opacity 500ms linear;
+}
+#progress.done{
+	opacity: 0;
+}
+#progress span{
+	position: absolute;
+	height: 2px;
+	-webkit-box-shadow: 1px 0 6px 1px #B91F1F;
+	-webkit-border-radius: 100%;
+	opacity: 1;
+	width: 10px;
+	right: -3px;
+	-webkit-animation: pulse 2s ease-out 0s infinite;
+}
+@-webkit-keyframes pulse{
+	30%{
+		opacity: .6;
+	}
+	60%{
+		opacity: 0;
+	}
+	100%{
+		opacity: .6;
+	}
+}
