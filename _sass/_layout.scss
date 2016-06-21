@@ -241,6 +241,7 @@
     }
 }
 
+/*----------自定义------------*/
 /*wanker*/
 .wanker {
   /* Full-screen takeover… */
@@ -302,4 +303,25 @@
 	100%{
 		opacity: .6;
 	}
+}
+/*主页*/
+#box{
+	width: 80%;
+	margin: 50px auto;
+	padding: 3rem;
+	text-align: center;
+	box-shadow: 0 0 15px #777777;
+	transition: 0.2s ease-out;
+    -moz-transition: 0.s ease-out;
+	-webkit-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+}
+#box:hover{
+	box-shadow: 0 0 5px #777777;
+}
+#box h2{
+    font-family: "Microsoft YaHei Light";
+	font-size: 2rem;
+	line-height: 5rem;
+	color: rgba(0,0,0,0.6);
 }
