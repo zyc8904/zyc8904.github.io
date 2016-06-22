@@ -8,7 +8,12 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
-
+/**
+*页面选中文字变为红色
+*/
+::selection {
+	color: #EF5875;
+}
 
 /**
  * Basic styling
