@@ -310,22 +310,62 @@
     animation: pulse 1.75s;
 }
 /*主页*/
-#box{
-	width: 90%;
-	margin: 1rem auto;
-	text-align: center;
-	box-shadow: 0 0 15px #777777;
-	transition: 0.2s ease-out;
-    -moz-transition: 0.2s ease-out;
-	-webkit-transition: 0.2s ease-out;
-	-o-transition: 0.2s ease-out;
+.Heartcontent{
+    width: 100%;
+	margin: 0 auto;
+    padding: 5% 0;
+    text-align: center;
 }
-#box:hover{
-	box-shadow: 0 0 5px #777777;
+@keyframes beat{
+	from{
+		margin: 5% 30%;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	}
+	to{
+		margin: 4% 31%;
+		box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+	}
 }
-#box h2{
-    font-family: "Microsoft YaHei Light";
-	font-size: 2rem;
-	line-height: 5rem;
-	color: rgba(0,0,0,0.6);
+@-webkit-keyframes beat{
+	from{
+		margin: 5% 30%;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	}
+	to{
+		margin: 4% 31%;
+		box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+	}
+}
+@-moz-keyframes beat{
+	from{
+		margin: 5% 30%;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	}
+	to{
+		margin: 4% 31%;
+		box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+	}
+}
+@-o-keyframes beat{
+	from{
+		margin: 5% 30%;
+		box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	}
+	to{
+		margin: 4% 31%;
+		box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+	}
+}
+#heartBeat{
+    margin: 5% 30%;
+	width: 10rem;
+	height: 10rem;
+	border-radius: 100%;
+	background: #D492A4;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	animation: beat 0.9s ease-in infinite reverse;
+    -webkit-animation: beat 0.9s ease-in infinite reverse;
+    -moz-animation: beat 0.9s ease-in infinite reverse;
+    -ms-animation: beat 0.9s ease-in infinite reverse;
+    -o-animation: beat 0.9s ease-in infinite reverse;
 }
