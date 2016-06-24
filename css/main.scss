@@ -1,5 +1,5 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+#Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
 
@@ -43,7 +43,26 @@ $on-laptop:        800px;
     }
 }
 
+@mixin box-shadow-compatibility($h-shadow,$v-shadow,$blur,$spread,$shadow-color){
+    -o-box-shadow: $h-shadow $v-shadow $blur $spread $shadow-color;
+    -ms-box-shadow: $h-shadow $v-shadow $blur $spread $shadow-color;
+    -moz-box-shadow: $h-shadow $v-shadow $blur $spread $shadow-color;
+	-webkit-box-shadow: $h-shadow $v-shadow $blur $spread $shadow-color;
+    box-shadow: $h-shadow $v-shadow $blur $spread $shadow-color;
+}
 
+@mixin animation-compatibility($animation-name,$animation-duration,$animation-timing-function,$animation-delay,$animation-iteration-count,$animation-direction){
+    -o-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
+    -moz-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
+    -ms-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
+	-webkit-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
+    animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
+}
+
+@mixin transition-compatibility($transition-property,$transition-duration,$transition-timing-function,$transition-delay){
+    -webkit-transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
+    transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import

@@ -246,7 +246,7 @@
 .wanker {
   /* Full-screen takeover… */
   background: #000;
-  color: #FFF;
+  color: $background-color;
   display: none;
   height: 100%;
   left: 0;
@@ -275,13 +275,10 @@
 #progress{
 	position: fixed;
 	height: 2.5px;
-    -o-box-shadow: 0 1px 10px 1px #F4CED5;
-    -ms-box-shadow: 0 1px 10px 1px #F4CED5;
-    -moz-box-shadow: 0 1px 10px 1px #F4CED5;
-	-webkit-box-shadow: 0 1px 10px 1px #F4CED5;
-    box-shadow: 0 1px 10px 1px #F4CED5;
+    @include box-shadow-compatibility(0,1px,10px,1px,#F4CED5);
 	background: #EF5875;
 	transition: opacity 600ms linear;
+    @include transition-compatibility(opacity,600ms,linear);
 }
 #progress.done{
 	opacity: 0;
@@ -303,11 +300,7 @@
 	100%{width: 100%;}
 }
 #progress{
-    -o-animation: pulse 1.75s;
-    -moz-animation: pulse 1.75s;
-    -ms-animation: pulse 1.75s;
-	-webkit-animation: pulse 1.75s;
-    animation: pulse 1.75s;
+    @include animation-compatibility(pulse,1.75s);
 }
 /*主页*/
 .Heartcontent{
@@ -362,10 +355,6 @@
 	height: 10rem;
 	border-radius: 100%;
 	background: #D492A4;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-	animation: beat 0.9s ease-in infinite reverse;
-    -webkit-animation: beat 0.9s ease-in infinite reverse;
-    -moz-animation: beat 0.9s ease-in infinite reverse;
-    -ms-animation: beat 0.9s ease-in infinite reverse;
-    -o-animation: beat 0.9s ease-in infinite reverse;
+    @include box-shadow-compatibility(0,5px,10px,0,rgba(0,0,0,0.3));
+    @include animation-compatibility(beat,0.9s,ease-in,0,infinite,reverse);
 }
