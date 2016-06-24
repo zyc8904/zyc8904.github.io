@@ -277,7 +277,6 @@
 	height: 2.5px;
     @include box-shadow-compatibility(0,1px,10px,1px,#F4CED5);
 	background: #EF5875;
-	transition: opacity 600ms linear;
     @include transition-compatibility(opacity,600ms,linear);
 }
 #progress.done{
