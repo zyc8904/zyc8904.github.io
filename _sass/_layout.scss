@@ -299,7 +299,7 @@
 	100%{width: 100%;}
 }
 #progress{
-    @include animation-compatibility(pulse,1.75s);
+    @include animation-compatibility(pulse,1.75s,ease,0,1,normal);
 }
 /*主页*/
 .Heartcontent{
