@@ -12,7 +12,7 @@ dl, dd, ol, ul, figure {
 *页面选中文字变为红色
 */
 ::selection {
-	color: #EF5875;
+	color: $selection-color;
 }
 
 /**

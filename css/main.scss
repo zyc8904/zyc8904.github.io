@@ -17,6 +17,9 @@ $spacing-unit:     30px;
 $text-color:       #111;
 $background-color: #fdfdfd;
 $brand-color:      rgba(0,0,0,0.6);
+$selection-color:  #EF5875;
+$link-color:       #A77678;
+
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
@@ -57,11 +60,6 @@ $on-laptop:        800px;
     -ms-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
 	-webkit-animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
     animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
-}
-
-@mixin transition-compatibility($transition-property,$transition-duration,$transition-timing-function,$transition-delay){
-    -webkit-transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
-    transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
