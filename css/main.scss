@@ -62,6 +62,11 @@ $on-laptop:        800px;
     animation: $animation-name $animation-duration $animation-timing-function $animation-delay $animation-iteration-count $animation-direction;
 }
 
+@mixin transition-compatibility($transition-property,$transition-duration,$transition-timing-function,$transition-delay){
+    -webkit-transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
+    transition: $transition-property $transition-duration $transition-timing-function $transition-delay;
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
