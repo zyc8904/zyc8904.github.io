@@ -31,11 +31,6 @@
 <script src="{{ "/javascripts/jquery-2.1.1.js" | prepend: site.baseurl }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ "/javascripts/jquery.wanker.js" | prepend: site.baseurl }}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-		//wanker
-			$(function() {
-			  // Customize the delay or duration defined in milliseconds
-			  $('[data-wanker]').wanker({delay:3000,duration:680});
-			});
     //loading bar
     $({property: 0}).animate({property: 100},{
 				duration: 1750,
@@ -47,6 +42,22 @@
 					}
 				}
 			});	
+		//wanker
+			$(function() {
+			  // Customize the delay or duration defined in milliseconds
+			  $('[data-wanker]').wanker({delay:3000,duration:680});
+			});
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    var duoshuoQuery = {short_name:"pwnnyblog"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    <!-- 多说公共JS代码 end -->
 		//console.log信息
 		console.group("Pwnny.bar");
     console.log("%c如果你觉得我的网站对你有帮助，请把它推荐给更多的人吧","font-size:18px;font-family:Microsoft YaHei;color:#6FBCBD;");
