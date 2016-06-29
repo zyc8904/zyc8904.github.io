@@ -8,9 +8,9 @@ permalink: /about/
 
 Hi, I'm Pwnny.
 
-我是一名前端工程师。
+我的梦想是成为一名优秀的前端架构师。
 
-I am a front-end developer.
+My dream is to become an excellent front-end architect.
 
 这是我个人的博客，记录一些我自己的想法。
 
