@@ -3,6 +3,7 @@ layout: post
 title:  "最好的设计是尽量少的设计"
 date:   2016/6/18 19:56:55  +0800
 categories: reproduced
+excerpt_separator:   
 ---
 
 在谷歌加上看到一个奇葩帖子，通过一个原始到无法再简单的网页[Motherfucking Website](http://motherfuckingwebsite.com/)及满屏幕的fuck道出了网页设计的真谛。
