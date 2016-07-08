@@ -327,3 +327,7 @@
 #progress{
     @include animation-compatibility(pulse,1.75s,ease,0,1,normal);
 }
+
+#recordDomain a{
+    margin: 0 auto;
+}
