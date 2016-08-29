@@ -4,10 +4,10 @@
 .site-header {
     min-height: 160px;
     background-color: $green-color;
-    background-image:linear-gradient(120deg, $green-color, $blue-color);
-    background-image:-webkit-linear-gradient(120deg, $green-color, $blue-color);
-    background-image:-moz-linear-gradient(120deg, $green-color, $blue-color);
-    background-image:-o-linear-gradient(120deg, $green-color, $blue-color);
+    background-image:-webkit-linear-gradient(120deg, $blue-color, $green-color);
+    background-image:-moz-linear-gradient(120deg, $blue-color, $green-color);
+    background-image:-o-linear-gradient(120deg, $blue-color, $green-color);
+    background-image:linear-gradient(120deg, $blue-color, $green-color);
     // Positioning context for the mobile navigation icon
     position: relative;
 }
