@@ -25,6 +25,11 @@ excerpt_separator:
 	- [ 6、请解释什么是 ARIA 和屏幕阅读器 (screenreaders)，以及如何使网站实现无障碍访问 (accessible)](#normal06)
 - [HTML相关问题](#htmlAbout) 
 	- [1、doctype(文档类型) 的作用是什么？](#htmlAbout01)
+	- [2、浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？](#htmlAbout02)
+	- [3、HTML 和 XHTML 有什么区别？](#htmlAbout03)
+	- [4、如果页面使用 'application/xhtml+xml' 会有什么问题吗？](#htmlAbout04)
+- [HTTP相关问题](#httpAbout)
+	- [1、常见的HTTP method](#httpAbout01)  
 
 ---
 
@@ -323,19 +328,16 @@ ARIA的相关属性非常多，下面就介绍几个常用的属性（如果需�
 
 doctype声明指出**阅读程序**(在Web文档的情况下，“阅读程序”通常是浏览器或者校验器这样的一个程序)应该用什么**规则集**(W3C所发布的一个文档类型定义（DTD）中包含的规则)来解释文档中的标记。直白的讲就是让浏览器根据你的指定来用正确的模式渲染页面。
 
-### 2、浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？ ###
+doctype是DocumentType的简称即文档类型，doctype声明位于文档中最前面的位置，处于标签之前，告知浏览器使用的是哪种规范。
 
-Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页。
+**~文档为什么要分类型？**
 
-Quirks （怪异）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页，排版会模拟 Navigator 4 与 Internet Explorer 5 的非标准行为。
+- 如果文档不分类型，各浏览器就会形成多种写法，假如IE用<title>标签作为标题、火狐浏览器用<caption>标签作为标题，而另一种浏览器可能采用<mytitle>，这对于开发者和用户来说简直是灾难。
+- W3C（万维网联盟World Wide Web Consortium）制作了对所有方面都平衡的分歧解决方案，并且各浏览器没有异议，于是用<!doctype>（注意：作为一个特殊的标 签，它是不需要闭合的）标签来引入W3C的dtd文件，以达到规范页面的效果。
+- HTML5不是基于SGML（标准通用标记语言）实现的，因此html不需要引入DTD，所以HTML5可以简单的声明一下<!doctype html>。
 
-Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模式），用于支持为标准的某个老版本而设计的网页，只有少数的怪异行为被实现。
 
-**~浏览器如何决定用哪个模式？**
-
-对HTML文件来说，浏览器使用文件开头的 DOCTYPE 来决定用哪种模式。
-
-    <!DOCTYPE html>
+	<!DOCTYPE html>
 	<html>
 	<head>
 	    <meta charset="UTF-8">
@@ -348,6 +350,20 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 > 范例中的DOCTYPE，<!DOCTYPE html>，是所有可用的DOCTYPE之中最简单的，而且是HTML5 所推荐的。HTML的早期变种也属于推荐标准，不过今日的浏览器都会对这个 DOCTYPE 使用标准模式，就算是已过时的 Internet Explorer 6 也一样。
 
 在 HTML5中，DOCTYPE 唯一的作用是启用标准模式。更早期的 HTML 标准会附加其他意义，但没有任何浏览器会将 DOCTYPE 用于怪异模式和标准模式之间互换以外的用途。
+
+<span id="htmlAbout02"></span>
+
+### 2、浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？ ###
+
+Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页。
+
+Quirks （怪异）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页，排版会模拟 Navigator 4 与 Internet Explorer 5 的非标准行为。
+
+Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模式），用于支持为标准的某个老版本而设计的网页，只有少数的怪异行为被实现。
+
+**~浏览器如何决定用哪个模式？**
+
+对HTML文件来说，浏览器使用文件开头的 DOCTYPE 来决定用哪种模式。
 
 - DOCTYPE切换问题：
 	- 如果页面使用 *<?xml version="1.0" encoding="UTF-8"?>* 开头，或者在DOCTYPE之前放入任何东西，都会导致浏览器（IE9及及之前版本，旧版Opera和旧版Safari）无法识别DOCTYPE。这会使他们进入Quirks模式。
@@ -362,3 +378,111 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 	-   浏览器处理过渡期的DOCTYPE时，最容易出现不一致的问题。各个浏览器对于处理后使用什么模式也各不相同。
 	-   浏览器在处理不能识别的DOCTYPE时，也存在不一致的现象。
 	-   大家可以自己在各浏览器里测试一下。在 Firefox中，请从右键菜单选择查看页面信息，然后查看渲染模式。
+
+<span id="htmlAbout03"></span>
+
+### 3、HTML 和 XHTML 有什么区别？ ###
+
+- **HTML（HyperText Markup Language，超文本标记语言）**最早的HTML官方正式规范，是1995年IETF（Internet Engineering Task Force，因特网工程任务组）发布的HTML 2.0。W3C（World Wide Web Consortium，世界万维网联盟）继IETF之后，对HTML进行了几次升级，直至1999年发布HTML 4.01。
+
+- **XHTML（eXtensible HyperText Markup Language，可扩展超文本标记语言）**是HTML 4.01的第一个修订版本，是「3种HTML4文件根据XML1.0标准重组」而成的。也就是说，XHTML是HTML 4.01和XML1.0的杂交。由于XHTML1.0是基于HTML4.01的，并没有引入任何新标签或属性（XHTML可以看作是HTML的一个子集），表现方式与超文本标记语言HTML类似，只是语法上更加严格，几乎所有的网页浏览器在正确解析HTML的同时，可兼容XHTML。
+
+下面是HTML和XHTML的发展历史：
+
+> 在HTML的早期发展中，W3C成立之前，很多标准的制定都是在浏览器的开发者们互相讨论的情况下完成的，比如HTML 2.0, 3.2直到4.0, 4.01，这些标准大部分都是所谓的retro-spec，即先有实现后有标准。在这种情况下，HTML标准不是很规范，浏览器也对HTML页面中的错误相当宽容。这反过来又导致了HTML作者写出了大量的含有错误的HTML页面。据说，时至今日web上99%的页面都含有HTML错误。
+
+> W3C随后意识到了这个问题，并认为这是互联网的一个基础性问题，应该加以解决。为了规范HTML，W3C结合XML制定了XHTML 1.0标准，这个标准没有增加任何新的tag，只是按照XML的要求来规范HTML，并定义了一个新的MIME type：application/xhtml+xml。W3C的初衷是对这个MIME type浏览器要实行强错误检查，即：如果页面有HTML错误，就要显示错误信息。但是由于已有的web页面中已经有了大量的错误，很多开发者拒绝使用新的MIME type。W3C不得已，在XHTML 1.0的标准之后加了一个附录C，允许开发者使用XHTML语法来写页面，同时使用旧的MIME type：application/html，来分发页面。这个旧的MIME type不会触发浏览器的强错误检查。这就是我们今天看到的情况，很多网站宣称自己遵守XHTML 1.0标准，那只不过是说，他的页面中用了XHTML语法，但并不能保证完全没有错误。要验证XHTML有没有真正起效，需要查看web服务器使用哪种MIME type来分发页面的。
+
+> W3C随后在XHTML 1.1中取消了附录C，即使用XHTML 1.1标准的页面必须用新的MIME type来分发。于是这个标准并没有很多人采用。这种情况同样发生在尚未完成的XHTML 2.0身上，它要求强错误检查，于是没有人采用。XHTML的故事也告诉我们，有时候先有标准再来实现，是行不通的。
+
+> 有了XHTML的教训，WHAT Working Group和W3C在制定下一代HTML标准，也就是HTML5的时候，就将向后兼容作为了一个很重要的原则。HTML5确实引入了许多新的特性，但是它最重要的一个特性是，不会break已有的网页。你可以将任何已有的网页的第一行改成<!DOCTYPE html>，它就成为了一个HTML5页面，并且可以照样在浏览器里正常的展示。
+
+**~区别：**
+
+- HTML是一种基于标准通用标记语言（SGML）的应用
+- 而XHTML则基于可扩展标记语言（XML）
+
+- 在HTML中某些元素可以像这样彼此不正确地嵌套：`<b><i>This text is bold and italic</b></i>`
+- 在 XHTML 中，所有的元素必须像这样彼此正确地嵌套： `<b><i>This text is bold and italic</i></b>`
+
+- HTML元素必须可以不被关闭 ：`<p>This is a paragraph`
+-  XHTML元素必须被关闭 ：`<p>This is a paragraph</p>`
+
+- HTML中空标签可以不关闭：`A break: <br>`
+- XHTML中空标签必须被关闭：`A break: <br/>`
+
+- HTML元素标签名和属性不区分大小写
+：`<BODY>`
+	`<P>This is a paragraph</P>`
+	`</BODY>` 
+- XHMTL元素标签名和属性必须小写： `<body>`
+	`<p>This is a paragraph</p>`
+	`</body>`
+
+- 所有的XHTML元素必须被嵌套于<html>根元素中。其余所有元素均可有子元素
+
+<span id="htmlAbout04"></span>
+
+### 4、如果页面使用 'application/xhtml+xml' 会有什么问题吗？ ###
+
+包括基本响应头的HTML文档：
+
+    HTTP/1.1 200 OK
+	Content-Type: text/html
+	
+	<!DOCTYPE html>
+	<html lang=en>
+	  <head>
+	    <meta charset=utf-8>
+	    <title>HTML</title>
+	  </head>
+	  <body>
+	    <p>I am a HTML document</p>
+	  </body>
+	</html>
+
+包括基本响应头的XHTML文档：
+
+    HTTP/1.1 200 OK
+	Content-Type: application/xhtml+xml
+	
+	<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	  <head>
+	    <title>XHTML</title>
+	  </head>
+	  <body>
+	    <p>I am a XHTML document</p>
+	  </body>
+	</html>
+
+> 关于XHTML的主要的误解是：认为它仅仅是另外一个版本的HTML。这个误解产生的原因来自于一个事实：IE只在文件以MIME类型为 <tt>text/html </tt>提交时，才支持XHTML。而标准中建议的类型其实是 <tt>application/xhtml+xm</tt>。
+
+> 当一个XHTML页面的MIME类型被提交为 <tt>text/html</tt> 时，它被所有的浏览器当作HTML处理，就好像XHTML比起HTML来没有任何不同。但是当一个XHTML页面的MIME类型被提交为 <tt>text/xml</tt> 或 <tt>application/xhtml+xml</tt> 时，它将被当作XML文档处理，而设计和显示XML都是必须要遵守严格规则的。
+
+> 如果你的网页使用XHTML并在HTTP <tt>Content-Type</tt> 标头使用 <tt>application/xhtml+xml</tt> MIME 类型，你不需要使用 DOCTYPE 启动标准模式，因为这种文件会永远使用标准模式。
+
+> 如果你的XHTML网页使用 <tt>text/html</tt> MIME 类型，浏览器会将其视为 HTML，因此你就需要 DOCTYPE 启用标准模式。
+
+<tt>**注意!**</tt> 页面使用 <tt>application/xhtml+xml</tt> 会令**IE8及它之前**的版本显示一个因为未知格式错误带来的下载对话框。这是因为支持 XHTML 的第一个 IE 版本是 IE9。
+
+简言之：低版本的老旧浏览器不支持 <tt>application/xhtml+xml</tt> ，这会带来错误。
+
+<span id="httpAbout"></span>
+
+##  > HTTP相关问题 ##
+
+<span id="httpAbout01"></span>
+
+### 1、常见的HTTP method ###
+
+1. **GET** 是最常用的方法，通常用于请求服务器发送某个资源。
+2. **POST** 起初是用来向服务器输入数据的。实际上，通常会用它来支持HTML的表单。表单中填好的数据通常会被送给服务器，然后由服务器将其发送到要去的地方。
+3. **HEAD** 与GET类似，但服务器在响应中值返回首部，不返回实体的主体部分。
+4. **PUT** 让服务器用请求的主体部分来创建一个由所请求的URL命名的新文档，或者，如果那个URL已经存在的话，就用这个主体替代它。
+5. **TRACE** 会在目的服务器端发起一个环回诊断，最后一站的服务器会弹回一个TRACE响应并在响应主体中携带它收到的原始请求报文。TRACE方法主要用于诊断，用于验证请求是否如愿穿过了请求/响应链。
+6. **OPTIONS** 请求web服务器告知其支持的各种功能。可以查询服务器支持哪些方法或者对某些特殊资源支持哪些方法。
+7. **DELETE** 请求服务器删除请求URL指定的资源。
+
+ 
+
+
