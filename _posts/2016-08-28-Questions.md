@@ -14,12 +14,16 @@ excerpt_separator:
 
 如果有答案出错或者不全面不清楚的地方欢迎指正。
 
+---
+
 - [常见问题](#normal)
 	- [1、你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗?](#normal01) 
 	- [2、浏览器同一时间可以从一个域名下载多少资源？](#normal02)
 	- [3、请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间)](#normal03)
 	- [4、请写一个简单的幻灯效果页](#normal04)
 	- [5、什么是"白屏"？什么是 FOUC (无样式内容闪烁)？如何避免？](#normal05)
+
+---
 
 <span id="normal"></span>
 
@@ -44,7 +48,7 @@ excerpt_separator:
 
 针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
 
-“渐进增强”观点则认为应关注于内容本身。
+“渐进增强”观点认为应关注于内容本身。
 
 内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。
 
@@ -145,22 +149,22 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 	<head>
 		<style>
 			img {
-			display: none;
-			width: 100px;
-			height: 100px;
+				display: none;
+				width: 100px;
+				height: 100px;
 			}
 		
 			input:checked + img {
-			display: block;
+				display: block;
 			}
 			
 			input {
-			position: absolute;
-			left: -9999px;
+				position: absolute;
+				left: -9999px;
 			}
 			
 			label {
-			cursor: pointer;
+				cursor: pointer;
 			}
 		</style>
 	</head>
@@ -186,7 +190,7 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 
 *是什么？*
 
-**原理：**将样式表放在文档底部时，为避免当样式变化时重绘页面中的元素，浏览器会阻塞内容**逐步呈现**。当发生这种现象时，页面会完全空白，知道页面所有的内容同时涌上屏幕。
+**原理：**将样式表放在文档底部时，为避免当样式变化时重绘页面中的元素，浏览器会阻塞内容**逐步呈现**。当发生这种现象时，页面会完全空白，直到页面所有的内容同时涌上屏幕。
 
 用户**感觉缓慢(样式表位于底部或者使用@import导入样式表)**的页面反而是可视化组件加载的更快的页面。在浏览器和用户等待位于底部的样式表时，浏览器会延迟显示任何可视化组件。
 
@@ -223,7 +227,7 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 
 用**link**标签将样式表放在文档顶部的**head**中。
 
->[HTML规范](https://www.w3.org/TR/html4/struct/links.html#h-12.3)规定：link和a不一样，只能出现在文档的head节中，但其出现的次数是任意的。（由于历史原因，浏览器支持违反HTML规范的页面，为了一些老旧的，不规整的页面也能浏览，使得将link放到head节之外任然能够呈现）
+>[**HTML规范**](https://www.w3.org/TR/html4/struct/links.html#h-12.3)规定：link和a不一样，只能出现在文档的head节中，但其出现的次数是任意的。（由于历史原因，浏览器支持违反HTML规范的页面，为了一些老旧的，不规整的页面也能浏览，使得将link放到head节之外任然能够呈现）
 
 **~FOUC(无样式内容闪烁)：**
 
