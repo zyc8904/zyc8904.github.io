@@ -332,12 +332,13 @@ doctype是DocumentType的简称即文档类型，doctype声明位于文档中最
 
 **~文档为什么要分类型？**
 
-- 如果文档不分类型，各浏览器就会形成多种写法，假如IE用<title>标签作为标题、火狐浏览器用<caption>标签作为标题，而另一种浏览器可能采用<mytitle>，这对于开发者和用户来说简直是灾难。
+- 如果文档不分类型，各浏览器就会形成多种写法，假如IE用 <tt>title</tt> 标签作为标题、火狐浏览器用 <tt>caption</tt> 标签作为标题，而另一种浏览器可能采用 <tt>mytitle</tt>，这对于开发者和用户来说简直是灾难。
 - W3C（万维网联盟World Wide Web Consortium）制作了对所有方面都平衡的分歧解决方案，并且各浏览器没有异议，于是用<!doctype>（注意：作为一个特殊的标 签，它是不需要闭合的）标签来引入W3C的dtd文件，以达到规范页面的效果。
 - HTML5不是基于SGML（标准通用标记语言）实现的，因此html不需要引入DTD，所以HTML5可以简单的声明一下<!doctype html>。
 
+> 范例中的DOCTYPE，<!DOCTYPE html>，是所有可用的DOCTYPE之中最简单的，而且是HTML5 所推荐的。HTML的早期变种也属于推荐标准，不过今日的浏览器都会对这个 DOCTYPE 使用标准模式，就算是已过时的 IE6 也一样。
 
-	<!DOCTYPE html>
+    <!DOCTYPE html>
 	<html>
 	<head>
 	    <meta charset="UTF-8">
@@ -347,7 +348,6 @@ doctype是DocumentType的简称即文档类型，doctype声明位于文档中最
 	</body>
 	</html>
 
-> 范例中的DOCTYPE，<!DOCTYPE html>，是所有可用的DOCTYPE之中最简单的，而且是HTML5 所推荐的。HTML的早期变种也属于推荐标准，不过今日的浏览器都会对这个 DOCTYPE 使用标准模式，就算是已过时的 Internet Explorer 6 也一样。
 
 在 HTML5中，DOCTYPE 唯一的作用是启用标准模式。更早期的 HTML 标准会附加其他意义，但没有任何浏览器会将 DOCTYPE 用于怪异模式和标准模式之间互换以外的用途。
 
@@ -482,6 +482,37 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 5. **TRACE** 会在目的服务器端发起一个环回诊断，最后一站的服务器会弹回一个TRACE响应并在响应主体中携带它收到的原始请求报文。TRACE方法主要用于诊断，用于验证请求是否如愿穿过了请求/响应链。
 6. **OPTIONS** 请求web服务器告知其支持的各种功能。可以查询服务器支持哪些方法或者对某些特殊资源支持哪些方法。
 7. **DELETE** 请求服务器删除请求URL指定的资源。
+
+<span id="httpAbout02"></span>
+
+### 2、从浏览器地址栏输入url到显示页面的步骤(以HTTP为例) ###
+
+先了解最基本的网络协议结构：
+
+![HTTP网络协议栈](http://pwnny.cn/assets/images/webfront/HTTP.PNG)
+
+HTTP协议位于TCP的上层，使用TCP来传输其报文数据
+
+![HTTTPS网络协议栈](http://pwnny.cn/assets/images/webfront/HTTPS.jpg)
+
+HTTPS就是在安全的传输层上发送的HTTP
+
+这是最基本的浏览器连接处理：
+
+![基本的浏览器连接处理](http://pwnny.cn/assets/images/webfront/browserConnection.png)
+
+**基本的步骤如下：**
+
+1. 浏览器从URL中解析出服务器的主机名；
+2. 浏览器将服务器的主机名转换成服务器的IP地址；
+3. 浏览器将端口号（如果有的话）从URL中解析出来；
+4. 浏览器建立一条与Web服务器的TCP连接；
+5. 浏览器向服务器发送一条HTTP请求报文；
+6. 服务器向浏览器回送一条HTTP响应报文；
+7. 关闭连接，浏览器显示文档。
+
+
+
 
  
 
