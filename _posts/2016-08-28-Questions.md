@@ -728,7 +728,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 下面是一个假想的请求和响应报文：
 
-![HTTP报文](http://pwnny.cn/assets/images/webfront/HTTPMessage.JPG)  
+![HTTP报文](http://pwnny.cn/assets/images/webfront/HTTPMessage.PNG)  
 
  <span id="httpAbout04"></span>
 
