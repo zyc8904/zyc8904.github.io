@@ -734,6 +734,44 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 ### 4、HTTP 状态码及其含义###
 
+    这个问题中所用到的图片都是webp格式的，所以请使用chrome浏览器来查看吧
+
+> **状态码**是用来告诉客户端发生了什么事情
+ 
+> 位于响应的起始行中
+
+> 在每条响应报文的起始行中返回。返回一个数字状态和一个可读的状态。数字码便于程序进行差错处理，原因短语便于人们理解
+
+**200~299：**表示成功
+
+**300~399：**表示资源已经被移走了
+
+**400~499：**表示客户端的请求出错了
+
+**500~599：**表示服务器出错了
+
+![状态码分类](http://pwnny.cn/assets/images/webfront/HTTPStatusCode.webp)  
+
+- **100~199** 信息性状态码
+- ![状态码1xx](http://pwnny.cn/assets/images/webfront/StatusCode1xx.webp)  
+- **200~299** 成功状态码
+-  ![状态码2xx](http://pwnny.cn/assets/images/webfront/StatusCode2xx.webp)
+-  **300~399** 重定向状态码
+-   ![状态码3xx](http://pwnny.cn/assets/images/webfront/StatusCode3xx01.webp)  
+-   ![状态码3xx](http://pwnny.cn/assets/images/webfront/StatusCode3xx02.webp)  
+-   302、303、307的区别
+	-   当 **HTTP/1.0** 客户端发起一个 **POST** 请求，并在响应中收到 **302** 重定向状态码时，它会接收Location首部的重定向URL，并向那个URL发起一个 **GET** 请求（而不是像原始请求中那样发起POST请求）
+	-   **HTTP1.1** 规范使用 **303** 状态码来实现同样的行为（服务器发送303状态码来重定向客户端的POST请求，在它后面跟上一个GET请求）
+	-   对于 **HTTP/1.1** 客户端，用 **307** 状态码取代 **302** 状态码来进行临时重定向。这样服务器就可以将302状态码保留起来，为HTTP/1.0客户端使用了
+- **400~499** 客户端错误状态码
+- ![状态码4xx](http://pwnny.cn/assets/images/webfront/StatusCode4xx01.webp)
+- ![状态码4xx](http://pwnny.cn/assets/images/webfront/StatusCode4xx02.webp)    
+- **500~599** 服务器错误状态码
+- - ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx01.webp)
+- ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx02.webp)    
+
+
+
 
 	 
  
