@@ -12,7 +12,7 @@ excerpt_separator:
 
 主要的问题都来自于Github上的两篇前端面试问题总结：[Front-end-Developer-Interview-Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions/tree/master/Translations/Chinese)和[FE-interview](https://github.com/qiu-deqing/FE-interview)
 
-因为有很大部分答案为网上搜集，没办法一一注明出处，如果作者看到了觉得有侵权的地方麻烦告知，立刻修改。
+因为有部分答案为网上搜集，没办法一一注明出处，如果作者看到了觉得有侵权的地方麻烦告知，立刻修改。
 
 如果有答案出错或者不全面不清楚的地方欢迎指正。
 
@@ -34,6 +34,10 @@ excerpt_separator:
 	- [1、常见的HTTP method](#httpAbout01)  
 	- [2、从浏览器地址栏输入url到显示页面的步骤(以HTTP为例)](#httpAbout02)
 	- [3、HTTP Request和HTTP Response报文结构是怎样的？](#httpAbout03)
+	- [4、HTTP 状态码及其含义](#httpAbout04)
+- [CSS相关问题](#CSSAbout)
+	- [1、CSS中类选择器和ID选择器的区别？](#CSSAbout01)
+	- [2、CSS选择器有哪些？](#CSSAbout02)
 
 ---
 
@@ -770,21 +774,369 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 - - ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx01.webp)
 - ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx02.webp)    
 
+<span id="CSSAbout"></span>
 
+##  > 常见问题 ##
 
+<span id="CSSAbout01"></span>
 
-	 
+### 1、CSS中类选择器和ID选择器的区别？ ###
+
+<span id="CSSAbout02"></span>
+
+### 2、CSS选择器有哪些？ ###
+
+#### 一、属性选择器 ####
+
+**1、类型选择器(element selector)**
+
+> 兼容性**IE6+**
+
+- 与一个元素名匹配。CSS1称之为元素选择器
+- 在XML中，什么都可以作为选择器（因为XML允许创建新的标记语言，这可能只是一个元素名而已）
+- 在HTML中，选择器通常是某个HTML元素（如p、h3、a，甚至是html本身：html {color: black;}）
+- 模式：element1
+- 示例：
+	- `body {background: #FFF}`
+	
+	- `p {font-size: 1em;}`
+
+**2、通配选择器(universal selector)**
+
+> 兼容性**IE6+**
+
+- 与所有元素名匹配，不参与计算优先级
+- 模式：*
+- 示例：
+	- `* {color: red;}`
+	
+	- `div * p {color: blue;}`
+
+**3、类选择器(class selector)**
+
+> 兼容性**IE6+**
+
+- 与有某个或某些特定类值得元素匹配，类值名必须紧跟在点号后面
+- 多个类值可以用空格“串”在一起，顺序不限：
+	- **多类选择器：**
+	- **兼容性：IE7+**
+	- 用于选择同时包含这些类名的元素（类名顺序不限）
+	- 如果一个多类选择器包含类名列表（类名以空格分隔）中所没有的一个类名，匹配就会失败
+	- **在IE7之前的版本： <tt>p.warning</tt> 可以正常工作，但 <tt>p.waring.help</tt> 会匹配class属性中包含help的所有p元素，因为help在选择器最后出现，不论其是否出现warning。同理 <tt>p.help.warning</tt> 只会匹配含warning的p**
+- 如果点号前面没有元素名，这个选择器将与所有包含该类值的元素匹配
+- 模式：element1.classname  element1.classname1.classname2
+- 示例：
+	- `p.urgent {color: red;}`
+	
+	- `.example {background: olive;}`
+
+**4、ID选择器(ID selector)**
+
+> 兼容性**IE6+**
+
+- 与有某个或某些特定ID值得元素匹配。ID值必须紧跟在#号后面，多个ID值不能“串”在一起
+- 如果#号前面没有元素名，这个选择器将与所有包含该ID值的元素匹配
+- 模式：element1#idname
+- 示例：
+	- `h1#page-title {font-size: 250%;}`
+	
+	- `#example {background: lime;}`
+
+**5、简单属性选择器(simple attribute selector)**
+
+> 兼容性**IE7+**
+
+- 与有某个属性（不论属性值是什么）的元素匹配。可以将多个属性选择器链接在一起选择具有多个属性的元素
+- element1[attr]
+- 示例：
+	- `img[alt] {border: 1px double gray;}`
+	
+	- `a[href][title] {font-weight: bold;}`
+
+**6、具体属性值选择器(specific attribute value selector)**
+
+> 兼容性**IE7+**
+
+- 与有特定属性值的元素匹配。可以把多个属性-值选择器链接在一起来选择一个文档
+- 要求必须与属性值完全匹配。不同于类选择器，这个规则要求属性值的顺序和空格都要相同，即完全匹配
+- ID选择器与指定id属性的属性选择器不是一回事（h1#page-title和h1[id="page-title"]的优先级不同）
+- 模式：element1[attr="value"]
+- 示例：
+	- `a[rel="home"] {font-weight: bold;}`
+	
+	- `p[class="urgent warning"] {font-weight: bold}`
+
+**7、部分属性值选择器(part of attribute value selector)**
+
+> 兼容性**IE7+**
+
+- 根据属性值中出现的一个用空格分隔的词来匹配元素。它能用于任何属性，而不只是class
+- 这个选择器构造等价于类选择器。因此  <tt>p.warning</tt> 和 <tt>p[class~="warning"]</tt> 是等价的
+- 模式：element1[attr~="value"]
+- 示例：
+	- `a[rel~="friend"] {text-transform: uppercase;}`
+	
+	- `p[class~="warning"] {background: yellow;}`
+
+**8、开始子串属性值选择器**
+
+> 兼容性**IE7+**
+
+- 根据属性值最开始的**子串**选择元素，注意不是一个词，是一部分子串，长度随意（一个字母也可以）
+- 模式：element1[attr^="substring"]
+- 示例：
+	- `a[href^="/blog"] {text-transform: uppercase;}`
+
+	- `p[class^="test-"] {background: yellow;}`
+
+**9、结束子串属性值选择器**
+
+> 兼容性**IE7+**
+
+- 根据属性值最后面的**子串**选择元素
+- 模式：element1[attr$="substring"]
+- 示例：
+	- `a[href$=".pdf"] {font-style: italic;}`
+
+**10、任意子串属性值选择器**
+
+> 兼容性**IE7+**
+
+- 根据属性值中任意位置上的**子串**选择元素
+- 模式：element1[attr*="substring"]
+- 示例：
+	- `a[href*="pwnny.com"] {font-weight: bold;}`
+	
+	- `div[class*="port"] {border: 1px solid red;}`
+
+**11、特定属性选择器**
+
+> 兼容性**IE7+**
+
+- 根据指定属性及属性值最开始的值选择元素，一般用于匹配语言值
+- 模式：<span>element[attr|="value"]</span>
+- 示例：
+	- `html[lang|="en"] {color: gray;}`
+	
+	- `img[src|="figure"] {border: 1px solid gray;}`
+
+**12、后代选择器(descendant selector)**
+
+> 兼容性**IE6+**
+
+> <tt>body</tt> 元素是浏览器默认显示的所有元素的祖先。 <tt>html</tt> 元素则是整个文档的祖先
+
+- 根据元素的状态（即作为另一个元素的**后代**）来选择该元素。也称为包含选择器或上下文选择器（contextual selector）
+- 规则左边的选择器一端包括两个或多个用空格分隔的选择器，选择器之间的空格是一种 *结合符*（combinator）
+- 必须从右向左解释该选择器。可以 多个选择器链接在一起(后代选择器对css会大大降低css的性能，不是很推荐使用)
+- 两个元素之间的层次间隔可以是无限的
+- 模式：element1 element2
+- 示例：
+	- `body h1 {font-size: 200%}`
+	
+	- `table tr td div ul li {color: purple}`
+
+**13、子选择器**
+
+> 兼容性**IE7+**
+
+- 根据元素的状态（即作为另一个元素的**子元素**）来选择该元素。限制为只匹配树中直接相连的元素
+- 子结合符两边可以有空白符，这是可选的。（<tt>h1 > strong</tt> 和 <tt>h1>strong</tt> 和 <tt>h1> strong</tt> 都是一样的）
+- 模式：element1 > element2
+- 示例：
+	- `div > p {color: cyan;}`
+	
+	- `ul > li {font-weight: bold;}`
+
+**14、相邻兄弟选择器(adjacentsibling combinator selector)**
+
+> 兼容性**IE7+**
+
+- 选择紧接在另一个元素后的并且二者有**相同父元素**的元素
+- 与子结合符一样，相邻兄弟结合符旁边可以有空白，可选
+- 用一个结合符只能选择两个相邻兄弟中的第二个元素
+- 选择器中的两个元素必须按“源顺序”出现（如：<tt>div</tt> 下只有两个子元素，<tt>ol</tt> 和 <tt>ul</tt> ，并且 <tt>ol</tt> 在前，那么只能使用 <tt>ol + ul</tt> 选择 <tt>ul</tt>，不能用<tt>ul +ol</tt> 选择ol）
+- 两个元素之间的文本内容不会影响相邻兄弟结合符起作用，文本会被忽略。只考虑文档树中的元素及其位置
+- 模式：element1 + element2
+- 示例：
+	- `table + p {margin-top: 2.5rem;}`
+	
+	- `h1 + * {margin-top: 0;}`
+
+#### 二、伪类选择器 ####
+
+**静态伪类：**
+
+> 在HTML和XHTML1.0及1.1中，**超链接**--是有href属性的所有a元素
+
+> 在XML中，**超链接**--可以是任何元素，只要它作为另一个资源的链接
+
+| 伪类名 | 描述 |
+|:-----|----|
+|:link |指示作为超链接（即有一个 **href** 属性）并指向一个**未访问**地址的所有锚| 
+|:visited | 指示作为**已访问**地址超链接的所有锚 | 
+
+> 第一个伪类很有用，它可以避免一些非链接的页面内目标锚（a中有 <tt>name</tt> 属性没有 <tt>href</tt> 属性）应用和含有href属性的常规链接锚一样的样式
+
+> 他们是**静态**的 ----- 第一次显示之后，一般不会再改变文档的样式
+
+**1、:link**
+
+> 兼容性**IE4+**
+
+- 用于URI**尚未访问过**的链接（URI尚未出现在用户代理的历史中），与 <tt>:visited</tt> 状态是互斥的
+- 类型：伪类
+- 应用于：指向另外的尚未访问过的资源的**链接**
+- 示例：
+	- `a:link {color: blue;}`
+	
+	- `*:link {text-decoration: underline;}`
+
+**2、:visited**
+
+> 兼容性**IE4+**
+
+- 用于URI**已访问过**的链接（URI已经出现在用户代理的历史中） ，与 <tt>:link</tt> 状态是互斥的
+- 类型： 伪类
+- 应用于：指向另外的已访问资源的**链接**
+- 示例：
+	- `a:visited {color: purple;}`
+	
+	- `*:visited {color: gray;}` 	 
+
+**3、:first-child**
+
+> 兼容性**IE7+**
+
+- 用于匹配某元素是另一个元素的第一个子元素
+- <tt>**常见错误！**</tt> 认为 <tt>p:first-child</tt> 之类的选择器会选择p元素的第一个子元素。**实际上**这会选择作为另外某个元素第一个子元素的 **所有** p标签！（如果要选择段落的第一个子元素，应该写做 <tt>p > *:first-child</tt>）
+- **伪类的实质**：把某种幻想类关联到与伪类相关的元素
+- 类型：伪类
+- 应用于：作为另一个元素第一个子元素的所有元素
+- 示例：
+	- `body *:first-child {font-weight: bold;}`
+	
+	- `p:first-child {font-size: 125%;}`
+
+**4、:lang**
+
+> 兼容性**IE7+**
+
+- 根据元素的语言编码匹配元素。从对应模式来说 <tt>:lang()</tt> 伪类就像是 <tt>|=</tt> 属性选择器
+- 伪类选择器和属性选择器之间的主要**区别**在于语言信息可以从很多来源得到，而且其中一些可能在元素之外
+- 这种语言信息必须包含在文档中，或者与文档关联，不能从CSS指定
+
+> 在HTML中，语言由 lang 属性和 META 元素的组合来确定，还可能包括协议提供的信息，如HTTP首部。XML 使用一个 xml:lang 属性，另外可能还有其他文档语言特定的方法来确定语言
+
+- 伪类比属性选择器稍微健壮一些，在需要语言特定的样式时，大多数情况下伪类都是更好的选择
+- 类型：伪类
+- 应用于：有相关语言编码信息的元素
+- 示例：
+	- `html:lang(en) {background: silver;}`
+	
+	- `*:lang(fr) {quotes: '?' ' ?;}`
  
+**动态伪类**
 
+| 伪类名 | 描述 |
+|:-----|----|
+|:focus | 指示当前拥有输入焦点的元素，也就是说，可以接受键盘输入或者能以某种方式激活的元素 | 
+|:hover | 指示鼠标指针停留在哪个元素上，例如，鼠标指针可能停留在一个超链接上，:hover就会指示这个超链接 | 
+|:active | 指示被用户输入激活的元素，例如，鼠标指针停留在一个超链接上时，如果用户点击鼠标，就会激活这个超链接，:active将只是这个超链接 |
 
+> <tt>**注意！**</tt> 伪类的 **顺序** 很重要，建议为：**link-visited-focus-hover-active**
 
+> <tt>**注意！**</tt> 动态伪类可以应用到**任何元素**
 
+> <tt>**注意！**</tt> 
+>  **IE6之前** 只允许动态伪类选择 **超链接**，  **IE7**支持对所有元素应用 **:hover**，但不支持对表单元素应用 **:focus**样式
 
+**5、:focus**
 
+> 兼容性**IE8+**
 
+- 应用于有焦点的元素，例如输入框、超链接
+- 类型：伪类
+- 应用于：有焦点的元素
+- 示例：
+	- `a:focus {outline: 1px dotted red;}`
+	
+	- `input:focus {background: yellow;}`
 
+**6、:hover**
 
+> 兼容性a标签**IE4+**，所有元素**IE7+**
 
- 
+- 应用于处于“悬停状态”的元素。**悬停**定义为：用户指示了一个元素但没有将其激活
+- 类型：伪类
+- 应用于：处于悬停状态的元素
+- 示例：
+	- `a[href]:hover {text-decoration: underline;}`
+	
+	- `p:hover {background: yellow;}`
 
+**7、:active**
 
+> 兼容性**IE4+**
+
+- 用于处于激活状态的元素，例如点击一个超链接：在鼠标按钮按下期间，这个链接是激活的
+- 类型：伪类
+- 应用于：被激活的元素
+- 示例：
+	- `a:active {color:red;}`
+
+	- `*:active {background: blue;}`
+
+#### 三、伪元素选择器 ####
+
+> 伪元素能够在文档中插入假想的元素，从而得到某种效果。这是由用户代理自己动态构成的
+
+> 所有伪元素都必须放在出现该伪元素的选择器的最后面（<tt>p:first-line em</tt> 就是不合法的，因为伪元素在选择器主体（主体在这里是em）前面出现）
+
+**1、:first-letter**
+
+> 兼容性**5.5+**
+
+- 用于指定一个 **块级元素** 第一个 **字母** 的样式。所有前导标点符号应当与第一个字母一同应用样式
+- 某些语言有一些要处理为单个字符的字母组合，如果是这样，用户代理可能会把首字母样式同时应用到这个字母组合
+- 类型：伪类
+- 生成：包含元素首字母的一个伪元素
+- 示例：
+	- `h1:first-letter {font-size: 166%;}`
+	- `a:first-letter {text-decoration: underline;}`
+
+**2、:first-line**
+
+> 兼容性**5.5+**
+
+- 用于设置元素中**第一行**文本的样式，而不论该行出现多少单词
+- 类型：伪元素
+- 生成：包含元素第一行格式化文本的伪元素
+- 示例：
+	- `p.lead:first-line {font-weight: bold;}`
+
+**:first-letter和:first-line的限制**
+
+**CSS2中：** <tt>:first-letter</tt> 和 <tt>：first-line</tt> 只能应用于 标记 或 段落 之类的**块级元素**，不能应用于超链接等的行内元素
+
+**CSS2.1中：** <tt>:first-letter</tt> 能应用到所有元素
+
+> 伪元素所允许的属性
+
+|:first-letter|:first-line|
+|:-----------|:---------|
+|所有font属性|所有font属性|
+|color|color|
+|所有background属性|所有background属性|
+|所有margin属性|word-spacing|
+|所有padding属性|letter-spacing|
+|所有border属性|text-decoration|
+|text-decoration|vertical-align|
+|vertical-align（如果float设置为none）|text-transform|
+|text-transform|line-height|
+|line-height|clear（仅适用于CSS2; CSS2.1已去除）|
+|float|text-shadow（仅适用于CSS2）|
+|letter-spacing（CSS2.1新增）||
+|word-spacing（CSS2.1新增）||
+|clear（仅适用于CSS2; CSS2.1已去除）||
+|text-shadow（仅适用于CSS2）||
