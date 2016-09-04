@@ -38,6 +38,9 @@ excerpt_separator:
 - [CSS相关问题](#CSSAbout)
 	- [1、CSS中类选择器和ID选择器的区别？](#CSSAbout01)
 	- [2、CSS选择器有哪些？](#CSSAbout02)
+- [JavaScript相关问题](#JSAbout)
+	- [1、script元素中的属性及存放位置](#JSAbout01) 
+	- [2、相等(==)和全等(===)操作符判断相等的流程是怎样的？](#JSAbout02)
 
 ---
 
@@ -533,7 +536,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 >- HTML格式文本文档：<tt>text/html</tt>    
 >- 普通ASCII文本文档：<tt>text/plain</tt>
->- JPGE格式的图片：<tt>image/jpeg</tt>
+>- JPEG格式的图片：<tt>image/jpeg</tt>
 >- GIF格式的图片：<tt>image/gif</tt>
 >- APPLE的QuickTime电影：<tt>video/quicktime</tt>
 >- 微软的PowerPoint：<tt>application/vnd.ms-powerpoint</tt>
@@ -836,6 +839,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 - 与有某个或某些特定ID值得元素匹配。ID值必须紧跟在#号后面，多个ID值不能“串”在一起
 - 如果#号前面没有元素名，这个选择器将与所有包含该ID值的元素匹配
+- 一个元素只能命名一个id名，但在不同的文档中可以使用相同的文档名
 - 模式：element1#idname
 - 示例：
 	- `h1#page-title {font-size: 250%;}`
@@ -913,7 +917,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 > 兼容性**IE7+**
 
-- 根据指定属性及属性值最开始的值选择元素，一般用于匹配语言值
+- 根据指定属性名(属性值是 <tt>value</tt> 或 <tt>value-</tt>)选择元素，一般用于匹配语言值
 - 模式：<span>element[attr|="value"]</span>
 - 示例：
 	- `html[lang|="en"] {color: gray;}`
@@ -952,7 +956,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 > 兼容性**IE7+**
 
-- 选择紧接在另一个元素后的并且二者有**相同父元素**的元素
+- 选择 **紧接** 在另一个元素后的并且二者有**相同父元素**的 **仅一个** 元素
 - 与子结合符一样，相邻兄弟结合符旁边可以有空白，可选
 - 用一个结合符只能选择两个相邻兄弟中的第二个元素
 - 选择器中的两个元素必须按“源顺序”出现（如：<tt>div</tt> 下只有两个子元素，<tt>ol</tt> 和 <tt>ul</tt> ，并且 <tt>ol</tt> 在前，那么只能使用 <tt>ol + ul</tt> 选择 <tt>ul</tt>，不能用<tt>ul +ol</tt> 选择ol）
@@ -962,6 +966,16 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 	- `table + p {margin-top: 2.5rem;}`
 	
 	- `h1 + * {margin-top: 0;}`
+
+**15、通用兄弟选择器**
+
+> 兼容性**IE7+**
+
+- 与相邻兄弟选择器类似，只有一处区别：选择某元素后面的 **所有** 兄弟元素（相邻兄弟选择器是选择仅一个）
+- 模式：element1 ~ element2
+- 示例：
+	- `.active ~ li {background: green; color: yellow;}`
+	- `table ~ p {margin-top:2.5rem;}`
 
 #### 二、伪类选择器 ####
 
@@ -1017,6 +1031,55 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 	- `body *:first-child {font-weight: bold;}`
 	
 	- `p:first-child {font-size: 125%;}`
+
+**:last-child**是选择元素的最后一个子元素
+
+**5、:nth-child**
+
+> 兼容性**IE9+**
+
+- 用于选择某个元素的一个或多个特定的子元素
+- <tt>:nth-child()</tt> 可以定义其他的值（值可以是整数，也可以是表达式）
+- 有以下几种方式（length为整数）：
+	- `:nth-child(length);`
+	- 参数是具体数字，不能为负
+
+	- `:nth-child(n); `   
+	- n是一个简单的表达式
+	- n从0开始计算，什么时候结束未知
+	- 如果直接用n就会选中所有子元素（用2n选择所有偶数，2n-1选择所有奇数，，）
+	- css计算方式：
+		- n=0-->  没有选中元素
+		- n=1-->  选择第一个元素
+		- n=2-->  选择第二个元素
+		- ...类推直至选中所有元素
+	- 这里的 **n** 只能是 **n** 用其他字幕替代无效
+
+	- `:nth-child(n*length);`
+	- n的倍数选择，n从0开始计算
+	- 如：2n选择所有偶数
+
+	- `:nth-child(n+length);`
+	- 选择大于length后面的元素
+	- 如：n+5从第五个元素开始往后选择（5、6、7、8...）
+
+	- `:nth-child(-n+length);`
+	- 选择小于length前面的元素
+	- 如：-n+5从第五个元素往前选择（5、4、3、2、1）
+
+	- `:nth-child(n*length+1);`
+	- 表示隔几选一
+	- 如：4n+1实现隔三选一	
+
+- 类型：伪类
+- 应用于：根据表达式或值不同分别应用不同的元素
+- 示例：
+	- `li:nth-child(2n+1) {background: lime;}`
+
+**6、:nth-last-child**
+
+> 兼容性**IE9+**
+
 
 **4、:lang**
 
@@ -1087,7 +1150,19 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 	- `*:active {background: blue;}`
 
-#### 三、伪元素选择器 ####
+**8、:enabled、:disabled、:checked**
+
+> 兼容性**IE9+**
+
+- 这三个属于**UI元素状态**伪类
+- 主要针对HTML中的Form元素操作
+- 最常见`type="text"`有enable和disabled两种 状态，前者为可写状态后者为不可写状态
+- 类型：伪类
+- 应用于：HTML表单元素
+- 示例：
+	- `input[type="text"]:disabled {border:1px solid #999;background-color: #fefefe;}`
+
+#### 三、伪元素选择器（pseudo-elements-selector） ####
 
 > 伪元素能够在文档中插入假想的元素，从而得到某种效果。这是由用户代理自己动态构成的
 
@@ -1140,3 +1215,303 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 |word-spacing（CSS2.1新增）||
 |clear（仅适用于CSS2; CSS2.1已去除）||
 |text-shadow（仅适用于CSS2）||
+
+**3、:after**
+
+> 兼容性**IE9+**，对于IE8及更早版本必须加 **<!DOCTYPE>**
+
+- 在元素内容的**最后**插入生成内容。这个伪元素默认是 **行内元素**，可以使用display改变
+- 类型：伪元素
+- 生成：一个伪元素，其中包含放在元素内容之后的生成内容
+- 示例：
+	- `a.external:afeter {content: "" url(/icons/globe.gif);}`
+	- `p:after {content: "|";}`
+
+**4、:before**
+
+> 兼容性**IE9+**，对于IE8及更早版本必须加 **<!DOCTYPE>**
+
+- 在元素内容的**最前面**插入生成内容。这个伪元素默认是 **行内元素**，可以使用display改变
+- 类型：伪元素
+- 生成：一个伪元素，其中包含放在元素内容之后的生成内容
+- 示例：
+	- `a[href]:before {content: "[link]";}`
+	- `p:before {content: attr(class);}`
+
+**:after和:before中的content：**
+
+- 根据content属性把生成内容放在一个元素内容的前面或后面
+- 若content中未包含空格，则生成内容和元素之间没有空格
+- 在CSS2.1中，除了列表标志，无法把生成内容放在元素框之外
+- CSS2和CSS2.1明确地禁止浮动或定位 <tt>:before</tt> 和 <tt>:after</tt> 内容，还禁止使用列表样式属性以及表属性
+	- 若 <tt>:before</tt> 或 <tt>:after</tt> 选择器的主体是**块级元素**，则 <tt>display</tt> 属性只接受值 <tt>none、inline、block和marker。</tt>其他值都处理为**block**
+	- 若 <tt>:before</tt> 或 <tt>:after</tt> 选择器的主体是**行内元素**，则 <tt>display</tt> 属性只接受值 <tt>none和inline</tt>。其他值都处理为**inline**
+- 生成内容由与之关联的元素继承值（这种继承值是适用于可继承的值） 
+
+----------
+
+> **content**
+
+**值：**`normal | [<string> | <uri> | <counter> | attr(<identifier>) | open-quote | close-quote | no-open-quote | no-close-quote  ]+ | inherit`
+
+**初始值：**normal
+
+**应用于：**<tt>:before</tt> 和 <tt>:after</tt>
+
+**继承性：** 无
+
+**计算值：**对于<uri>值，为绝对URI；对于属性引用，则为结果串；否则，根据指定确定
+
+**插入串值：**
+
+    {content: "somestring";}
+
+- 串值会原样显示，即使其中包含某种标记也不例外（如：`h2:before {content: "<>&para;</em>"; color:gray;}`）
+- 如果需要**生成内容中**有一个换行（回车），不能直接使用 <tt><br></tt> ，而要使用串 <tt>\A</tt> ，这是CSS表示换行的方法（由Unicode换行符得来，其十六制位置是A）
+- 如果是在书写content中一个很长的串值时需要换行，则要用 \ 对换行符转义。还可以使用转义来指示十六进制Unicode值，如 \00AB
+
+**插入URI值：**
+
+    {content: url();}
+
+-  利用URI值，只需要指向一个外部资源（一个图像、视频、声音剪辑或用户代理支持的其他任何资源）。如果用户代理不支持所指定的资源，就要求用户代理**完全忽略**这个资源，不插入任何内容
+
+**插入属性值：**
+
+    {content: attr();}
+
+- 所有属性值都可以作为生成内容插入：alt文本、class或id值，以及任何属性
+- 可以利用复杂的规则显示更多属性
+	- `body:before {content: "Text: "attr(text) "| Link: " attr(alink) " | visited: " attr(vlink) " | Active: " attr(alink); display: block; padding: 0.33em; border: 1px solid black; text-align: center;}`
+- 如果一个属性不存在，会在响应位置插入一个**空串** 
+- CSS2.X定义属性引用的返回值是**未解析**的串，因此，如果一个属性的值包含标记或字符实体，会原样显示
+
+----------
+
+<span id="CSSAbout03"></span>
+
+### 3、CSS Hack原理及常用Hack ###
+
+|标记|IE6|IE7|IE8|FF|Opera|Safari|
+|-----|-----|-----|-----|-----|-----|-----|
+|[*+><]|√|√|X|X|X|X|
+|_|√|X|X|X|X|X|
+|\9|√|√|√|X|X|X|
+|\0|X|X|√|X|√|X|
+|@media screen and(-webkit-min-device-pixel-ratio:0){.bb {}}|X|X|X|X|X|√|
+|.bb ,x:-moz-any-link, x:default|X|√|X|√(ff3.5及以下)|X|X|
+|@-moz-document url-prefix(){.bb {}}|X|X|X|√|X|X|
+|@media all and (min-width: 0px){.bb {}}|X|X|X|√|√|√|
+|*+html.bb{}|X|√|X|X|X|X|
+|浏览器内核|Trident|Trident|Trident|Gecko|Presto|WebKit|
+
+> **!important**不是hack手段
+
+### 4、CSS特殊性计算 ###
+
+> **继承（Inheritance）**是从一个元素向其后代元素传递属性值所采用的机制
+
+> **层叠（cascade）**在确定应当向一个元素应用哪些值时，用户代理考虑继承、声明的特殊性、声明本身的来源的过程称为层叠
+
+**> 特殊性：**
+
+**特殊性值**表述为**四**个部分（值的大小从左向右依次递减）：
+
+- 所有**内联样式**的特殊性最高加：（1，0，0，0）
+	- `<h1 style="color: green;">The Meadow Party</h1>`
+
+> CSS2.1新增内联样式特殊性1，0，0，0。在CSS2中，内联样式特殊性是1，0，0（CSS2特殊性包含3个值，而不是四个），所以在CSS2中因为内联样式和ID选择器特殊性相同，所以ID选择器很容易覆盖内联样式
+
+- 选择器中的**ID属性值**加：（0，1，0，0）
+	- `#someid`
+- 选择器中的**类属性值、属性选择或伪类**加：（0，0，1，0）
+	- `.bright | a[href="pwnny.cn"] | a:hover`
+- 选择器中的**元素和伪元素**加：（0，0，0，1）
+	- `h1 | div:before`
+- **结合符和通配**选择器对特殊性没有任何贡献（0，0，0，0）  
+	- `h1+p  | *`
+
+> <tt>**注意！**</tt> 通配选择器对一个选择器的特殊性没有贡献，其特殊性为（0，0，0，0），这与根本没有特殊性有区别
+
+> <tt>**注意！**</tt> **结合符**则根本 **没有特殊性**，甚至连0特殊性都没有
+
+> <tt>**注意！**</tt> **ID选择器** （#someid）特殊性为（0，1，0，0），**指定id属性的属性选择器**（a[id="someid"]）特殊性为（0，0，1，0）
+
+一旦确定一个选择器的特殊性，这个**值**将授予其所有**相关声明**
+
+用户代理在处理**声明分组**和**选择器分组**时，都会将其“解组”为单独的规则
+
+> 声明分组
+
+- `h1 {color: silver; background: black;}   (0,0,0,1)`
+	- `h1 {color: silver;}   (0,0,0,1)`
+	- `h1 {background: black;}   (0,0,0,1)`
+
+> 选择器分组
+
+- `h1, h2.section {color: silver; background: black;}`
+	- `h1 {color: silver;}   (0,0,0,1)`
+	- `h1 {background: black;}   (0,0,0,1)`
+	- `h2.section {color: silver;}   (0,0,1,1)`
+	- `h2.section {background: black;}   (0,0,1,1)`
+
+**> 重要性**
+
+**重要声明：**在这些声明的**结束分号之前**插入 <tt>!important</tt> (某个声明非常重要，超过了所有其他声明)
+
+><tt>**注意！**</tt> <tt>!important</tt> 总是放在声明的最后，即分号之前。如果一个属性的值包含多个关键字如 <tt>font</tt> ,这一点则尤其重要。如果 <tt>!important</tt> 放在其他位置，则整个声明都将无效
+
+- 所有 <tt>!important</tt> 声明会分组在一起，所有非重要声明也归为一组
+- 重要声明的特殊性冲突会在重要声明内部解决，不会与非重要声明想混
+- 如果一个重要声明和一个非重要声明冲突，胜出的总是重要声明
+
+**> 继承**
+
+- 在文档树中，元素样式的值会向下应用到后代元素，绝对不会向上传播（有一个例外：应用到**body**元素的背景样式可以传递到**html**元素(html是文档的**根元素**)，相应地可以定义其画布）
+- 有些属性不能继承（如：border、大多数框模型：外边距、内边距、背景和边框 ）
+- 继承的值**根本没有特殊性**， 甚至连0特殊性都没有（若声明了通配选择器，因为通配选择器特殊性为0比继承的无特殊性要强，所以继承的元素会渲染通配选择器的样式）
+
+**> 层叠**
+
+如果特殊性相等的两个规则同时应用到一个元素上，则会根据以下规则判断权重：
+
+- 按权重（!important）和来源排序（以下权重顺序依次由大到小）
+	- 读者的重要声明
+	- 创作人员的重要声明
+	- 创作人员的正常声明
+	- 读者的正常声明
+	- 用户代理声明
+
+任何声明都会胜过用户代理样式
+
+- 按特殊性排序
+	- 如果向一个元素应用多个彼此冲突的声明，且权重相同，则按特殊性排序
+- 按顺序排序
+	- 如果两个规则的权重、来源和特殊性完全相同，那么在样式表中后出现的一个会胜出
+	- 若文档中包含的规则比导入的规则权重高，那么文档中包含的规则将胜出(即使这个规则是文档样式表的一部分而不是元素style属性的一部分，也是如此)
+	- 推荐**链接**样式顺序：**link-visited-hover-active(LVHA)**
+		- 对于所有规则试图设置同一个属性时，这个顺序至关重要
+		- 如果各规则为不同的属性设置样式，那么顺序无关紧要
+
+**> 非CSS的表现提示**
+
+- 非CSS提示被处理为特殊性为0，并出现在创作人员样式表的最前面
+- 只要有创作人员或读者样式，这种表现提示就会被覆盖，但是用户代理的样式不能将其覆盖
+
+<span id="JSAbout"></span>
+
+##  > 常见问题 ##
+
+<span id="JSAbout01"></span>
+
+### 1、元素中的属性及存放位置 ###
+
+HTML4.01定义的属性：
+
+- **async：**（可选）表示应该立即下载脚本，但不应妨碍页面中的其他操作（如：下载其他资源或等待加载其他脚本）。只对外部脚本有效
+- **charset：**（可选）表示通过src属性指定的代码的字符集。会被大多数浏览器忽略
+- **defer：**（可选）表示脚本可以延迟到文档完全解析和显示之后再执行。只对外部脚本有效（IE7之前对嵌入脚本也有效）
+	- 不影响页面构造，相当于告诉浏览器立即下载，但延迟执行
+- **src：**（可选）表示包含要执行代码的外部文件
+- **type：**（可选）表示编写代码使用的脚本语言的内容类型（也称为MIME类型）默认值为 <tt>text/javascript</tt> （实际上，服务器在传送js文件时使用的是 <tt>application/x-javascript</tt>，但在type中设置这个值脚本会被忽略）
+
+使用`<script>`元素的方式两种：
+
+1. 页面内嵌入
+
+	`<script type="text/javascript">function sayHi(){console.log("Hi!");}</script>`
+
+2. 外部文件引入
+
+    `<script type="text/javascript"  src="example.js"></script>`
+
+	- 在XHTML文档中可以省略`</script>`，但不能用在HTML文档中
+
+   -  `<script type="text/javascript"  src="example.js" />`
+   -  带有src属性的`<script>`元素两个标签之间不应该再包含js代码，如果包含了会被忽略，只会下载执行外部脚本文件
+   -  使用外部文件的优点：
+	   -  可维护性
+	   -  可缓存性
+	   -  适应未来性 ：无须为了兼容XHTML使用`<script />`或注释hack。HTML和XHTML包含外部文件的语法是相同的
+
+两种方式包含的JavaScript代码将被**从上至下**依次解释，在解释器对`<script>`元素内部的所有代码求值完毕以前，页面中的其余内容都不会被浏览器加载或显示
+
+> <tt>**注意！**</tt> 不要在代码中的任何地方出现`</script>`字符串(可以通过转义字符“\”解决：`<\/script>`)
+
+**标签位置**
+
+一般把全部JavaScript引用放在`<body>`元素中页面内容的后面
+
+- 如果放在`<head>`元素中，那必须等到全部js代码都被下载、解析、执行完成以后才能可是呈现页面内容（浏览器在遇到`<body>`标签时才开始呈现内容），这会导致页面延迟，并是窗口一片空白
+
+<span id="JSAbout02"></span>
+
+### 2、相等(==)和全等(===)操作符判断相等的流程是怎样的？ ###
+
+1. **相等和不想等**
+
+这两个操作符在比较时都会先转换操作数（**强制转型**），再比较相等性：
+
+- 如果其中一个操作数是**布尔值**，则在比较之前先将其转换为数值---false转换为0，true转换为1
+- 如果其中一个是字符串，另一个是数值，则在比较之前先将 **字符串** 转换为 **数值**
+- 如果其中一个是**对象**，另一个不是，则调用对象的**valueOf()**方法 ，用得到的基本类型值按照前面的规则进行比较
+	- **null**和**undefined**是相等的
+	- 在比较之前不能将null和undefined转换成其他任何值
+	- 如果有一个操作数是NaN，则**相等操作符**返回false，**不想等操作符**返回true
+		- 即使两个操作数都是**NaN**，相等操作符也返回false，因为NaN不等于NaN
+	- 如果两个都是对象，则比较是不是同一个对象。若指向同一个对象，返回true；否则，返回false
+
+|表达式|值|
+|------|---|
+|null == undefined|true|
+|"NaN" == NaN|false| 
+|5 == NaN|false| 
+|NaN == NaN|false| 
+|NaN != NaN|true| 
+|false == 0|true| 
+|true == 1|true| 
+|true == 2|false| 
+|undefined == 0|false| 
+|null == 0|false| 
+|"5" == 5|true|  
+
+2. **全等和不全等**
+
+只在两个操作数**未经转换**就 **相等(===)或不想等(!==)** 的情况下返回true
+
+    var result = ("55"== 55);   //true，因为转换后相等
+    var result = ("55"=== 55);   //false，因为不同的数据类型不想等
+
+    var result = ("55"!= 55);   //false，因为转换后相等
+    var result = ("55"!== 55);   //true，因为不同的数据类型不想等
+
+    null == undefined   //true，因为他们是类似的值
+    null === undefined   //false，因为他们是不同类型的值
+
+两个包含着完全相同的字符且字符顺序也相同的字符串被认为是相同的字符串：`'c'+'a'+'t' === 'cat'   //true`
+
+两个字符串显示结相同但是编码不同，==和===都认为他们不想等
+
+如果指向相同对象、数组、函数，他们相等
+
+### 3、JavaScript中有哪些方法定义对象？ ###
+
+1. 构造函数法
+
+    `var person = new Object()`
+
+    `person.name = "Pwnny"`
+
+    `person.age = 22`
+
+2. 对象字面量法
+
+    `var person = { name : "Pwnny", age : 29};`
+
+    最后一个属性之后不能加逗号。各属性名可以使用字符串
+
+    通过对象字面量定义对象时，不会调用Object构造函数
+
+3. Object.create()
+
+  
