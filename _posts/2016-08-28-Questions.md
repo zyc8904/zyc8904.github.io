@@ -38,19 +38,23 @@ excerpt_separator:
 - [CSS相关问题](#CSSAbout)
 	- [1、CSS中类选择器和ID选择器的区别？](#CSSAbout01)
 	- [2、CSS选择器有哪些？](#CSSAbout02)
+	- [3、PNG,GIF,JPEG的区别及如何选？](#CSSAbout03)
+	- [4、CSS Hack原理及常用Hack](#CSSAbout04)
+	- [5、CSS特殊性计算](#CSSAbout05)
+	- [6、CSS中常用的颜色单位](#CSSAbout06)
+	- [7、如果设计中使用了非标准的字体，你该如何去实现？](#CSSAbout07)
 - [JavaScript相关问题](#JSAbout)
 	- [1、script元素中的属性及存放位置](#JSAbout01) 
 	- [2、相等(==)和全等(===)操作符判断相等的流程是怎样的？](#JSAbout02)
+	- [3、JavaScript中有哪些方法定义对象？](#JSAbout03)
+	- [4、<,>,<=,>=的比较规则？](#JSAbout04)
+	- [5、+运算符的工作流程](#JSAbout05)
 
 ---
 
-<span id="normal"></span>
+##  <span id="normal"></span>> 常见问题 ##
 
-##  > 常见问题 ##
-
-<span id="normal01"></span>
-
-### 1、你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗? ###
+### <span id="normal01"></span>1、你能描述渐进增强 (progressive enhancement) 和优雅降级 (graceful degradation) 之间的不同吗? ###
 
 1. **很久很久以前：**浏览器即不宠幸前缀CSS3也不宠幸纯情CSS3(border-radius)；
 2. **很久之前：**浏览器只宠幸前缀CSS3，不宠幸纯情的CSS3；
@@ -68,6 +72,8 @@ excerpt_separator:
 	}
 
 针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+
+无需为了一个已成型的网站在旧式浏览器下正常工作而做逆向工程。首先，只需要为所有的设备和浏览器准备好清晰且语义化的HTML以及完善的内容，然后再以无侵入（unobtrusive）的方式向页面增加无害于基础浏览器的额外样式和功能。当浏览器升级时，它们会自动地呈现出来并发挥作用。
 
 “渐进增强”观点认为应关注于内容本身。因为内容是我们建立网站的主要因素。这使得“渐进增强”成为一种更为合理的设计范例。
 
@@ -111,13 +117,13 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 
 使用**优雅降级**导致的错误显示：
 
-- 浏览器在渲染优雅降级时会忽略纯情CSS3，直接使用前缀CSS3，这将会导致错误显示。
+- 浏览器在渲染优雅降级时先遇到纯情CSS，但是遇到后面的前缀CSS时则会覆盖先前的纯情CSS效果。
 
 ![error](http://pwnny.cn/assets/images/webfront/graceful-degradation.JPG)
 
 使用**渐进增强**带来的正确显示：
 
-- 浏览器在渲染渐进增强时则会忽略前缀CSS3，使用最下面的不带前缀的CSS3，这会带来正确的显示。
+- 浏览器在渲染渐进增强时则会覆盖前缀CSS3，使用最下面的不带前缀的CSS3，这会带来正确的显示。
 
 ![error](http://pwnny.cn/assets/images/webfront/progressive-enhancement.JPG)
 
@@ -133,15 +139,11 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 
 - 优雅降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。
 
-<span id="normal02"></span>
-
-### 2、浏览器同一时间可以从一个域名下载多少资源？ ###
+### <span id="normal02"></span>2、浏览器同一时间可以从一个域名下载多少资源？ ###
 
 ![error](http://pwnny.cn/assets/images/webfront/domainLoad.JPG)
 
-<span id="normal03"></span>
-
-### 3、请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间) ###
+### <span id="normal03"></span>3、请说出三种减少页面加载时间的方法。(加载时间指感知的时间或者实际加载时间) ###
 
 1. **减少HTTP请求**：包括图片地图、CSS Sprites、使用data:模式的URL内联图片、以及合并脚本和样式表
 2. **使用CDN(内容发布网络)**：拉近HTTP响应和用户的距离
@@ -167,9 +169,7 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 22. **使用小favicon.ico文件，并让其可缓存**
 23. **避免使用src和href标签**
 
-<span id="normal04"></span>
-
-### 4、请写一个简单的幻灯效果页面 ###
+### <span id="normal04"></span>4、请写一个简单的幻灯效果页面 ###
 
 不使用JS的加分代码：
 
@@ -211,9 +211,7 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 	</body>
 	</html>
 
-<span id="normal05"></span>
-
-### 5、什么是"白屏"？什么是 FOUC (无样式内容闪烁)？如何避免？ ###
+### <span id="normal05"></span>5、什么是"白屏"？什么是 FOUC (无样式内容闪烁)？如何避免？ ###
 
 **~白屏：**
 
@@ -278,9 +276,7 @@ http://pwnny.cn/assets/images/webfront/front01.JPG)
 
 遵循HTML规范，将样式表放在顶部。(如果你的样式表不是呈现页面所必需的，可以想办法在文档加载完毕之后动态加载进来，如用文档的onload事件延迟创建link和scriptDOM元素。否则，不管你的样式表在呈现页面时是否必需，都应遵守这个规则)
 
-<span id="normal06"></span>
-
-### 6、请解释什么是 ARIA 和屏幕阅读器 (screenreaders)，以及如何使网站实现无障碍访问 (accessible) ###
+### <span id="normal06"></span>6、请解释什么是 ARIA 和屏幕阅读器 (screenreaders)，以及如何使网站实现无障碍访问 (accessible) ###
 
 **~ARIA**
 
@@ -329,13 +325,9 @@ ARIA的相关属性非常多，下面就介绍几个常用的属性（如果需�
 - 不要滥用 tabindex 属性
 	- tabindex 用于指定使用 tab 键改变焦点时的顺序，盲人用户已经形成自己的顺序逻辑，如果你的网页布局合理，那就不需要过多地使用 tabindex 属性，甚至为每个元素添加 tabindex ，这只会让盲人用户感到混乱
 
-<span id="htmlAbout"></span>
+##  <span id="htmlAbout"></span>> HTML相关问题 ##
 
-##  > HTML相关问题 ##
-
-<span id="htmlAbout01"></span>
-
-### 1、doctype(文档类型) 的作用是什么？ ###
+### <span id="htmlAbout01"></span>1、doctype(文档类型) 的作用是什么？ ###
 
 doctype声明指出**阅读程序**(在Web文档的情况下，“阅读程序”通常是浏览器或者校验器这样的一个程序)应该用什么**规则集**(W3C所发布的一个文档类型定义（DTD）中包含的规则)来解释文档中的标记。直白的讲就是让浏览器根据你的指定来用正确的模式渲染页面。
 
@@ -362,9 +354,7 @@ doctype是DocumentType的简称即文档类型，doctype声明位于文档中最
 
 在 HTML5中，DOCTYPE 唯一的作用是启用标准模式。更早期的 HTML 标准会附加其他意义，但没有任何浏览器会将 DOCTYPE 用于怪异模式和标准模式之间互换以外的用途。
 
-<span id="htmlAbout02"></span>
-
-### 2、浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？ ###
+### <span id="htmlAbout02"></span>2、浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？ ###
 
 Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页。
 
@@ -390,9 +380,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 	-   浏览器在处理不能识别的DOCTYPE时，也存在不一致的现象。
 	-   大家可以自己在各浏览器里测试一下。在 Firefox中，请从右键菜单选择查看页面信息，然后查看渲染模式。
 
-<span id="htmlAbout03"></span>
-
-### 3、HTML 和 XHTML 有什么区别？ ###
+### <span id="htmlAbout03"></span>3、HTML 和 XHTML 有什么区别？ ###
 
 - **HTML（HyperText Markup Language，超文本标记语言）**最早的HTML官方正式规范，是1995年IETF（Internet Engineering Task Force，因特网工程任务组）发布的HTML 2.0。W3C（World Wide Web Consortium，世界万维网联盟）继IETF之后，对HTML进行了几次升级，直至1999年发布HTML 4.01。
 
@@ -432,9 +420,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 - 所有的XHTML元素必须被嵌套于<html>根元素中。其余所有元素均可有子元素
 
-<span id="htmlAbout04"></span>
-
-### 4、如果页面使用 'application/xhtml+xml' 会有什么问题吗？ ###
+### <span id="htmlAbout04"></span>4、如果页面使用 'application/xhtml+xml' 会有什么问题吗？ ###
 
 包括基本响应头的HTML文档：
 
@@ -478,13 +464,9 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 简言之：低版本的老旧浏览器不支持 <tt>application/xhtml+xml</tt> ，这会带来错误。
 
-<span id="httpAbout"></span>
+##  <span id="httpAbout"></span>> HTTP相关问题 ##
 
-##  > HTTP相关问题 ##
-
-<span id="httpAbout01"></span>
-
-### 1、常见的HTTP method ###
+### <span id="httpAbout01"></span>1、常见的HTTP method ###
 
 ![HTTP Method](http://pwnny.cn/assets/images/webfront/HTTPMethod.PNG)
 
@@ -519,9 +501,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 >对待扩展方法的态度：**对所发送的内容要求严一点，对所接收的内容宽容一点**  
 
-<span id="httpAbout02"></span>
-
-### 2、从浏览器地址栏输入url到显示页面的步骤(以HTTP为例) ###
+### <span id="httpAbout02"></span>2、从浏览器地址栏输入url到显示页面的步骤(以HTTP为例) ###
 
 下面是一些基本知识介绍
 
@@ -645,9 +625,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 	- 此时文档完全解析完成，浏览器可能还在等待如图片等内容加载，等这些内容完成载入并且所有异步脚本完成载入和执行，<tt>document.readState</tt> 变为**complete**，window触发load事件
 - 显示页面（HTML解析过程中会**逐步**显示页面） 
 
- <span id="httpAbout03"></span>
-
-### 3、HTTP Request和HTTP Response报文结构是怎样的？###
+###  <span id="httpAbout03"></span>3、HTTP Request和HTTP Response报文结构是怎样的？###
 
  **HTTP报文**是在HTTP应用程序之间发送的数据块。这些数据块以一些文本形式的元信息（meta-information）开头。这些信息描述了报文的内容及含义，后面跟着可选的数据部分。（这些报文在客户端、服务器和代理之间流动，并且不论是响应还是请求，报文都向下游流动）由三部分组成：对报文进行描述的**起始行**，包含属性的**首部**块，以及可选的、包含数据的**主体**部分
 
@@ -737,9 +715,7 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 ![HTTP报文](http://pwnny.cn/assets/images/webfront/HTTPMessage.PNG)  
 
- <span id="httpAbout04"></span>
-
-### 4、HTTP 状态码及其含义###
+###  <span id="httpAbout04"></span>4、HTTP 状态码及其含义###
 
     这个问题中所用到的图片都是webp格式的，所以请使用chrome浏览器来查看吧
 
@@ -777,17 +753,11 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 - - ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx01.webp)
 - ![状态码5xx](http://pwnny.cn/assets/images/webfront/StatusCode5xx02.webp)    
 
-<span id="CSSAbout"></span>
+##  <span id="CSSAbout"></span>> CSS常见问题 ##
 
-##  > 常见问题 ##
+### <span id="CSSAbout01"></span>1、CSS中类选择器和ID选择器的区别？ ###
 
-<span id="CSSAbout01"></span>
-
-### 1、CSS中类选择器和ID选择器的区别？ ###
-
-<span id="CSSAbout02"></span>
-
-### 2、CSS选择器有哪些？ ###
+### <span id="CSSAbout02"></span>2、CSS选择器有哪些？ ###
 
 #### 一、属性选择器 ####
 
@@ -1286,16 +1256,99 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 - 如果一个属性不存在，会在响应位置插入一个**空串** 
 - CSS2.X定义属性引用的返回值是**未解析**的串，因此，如果一个属性的值包含标记或字符实体，会原样显示
 
+### <span id="CSSAbout03"></span>3、PNG,GIF,JPEG的区别及如何选？ ###
+
 ----------
 
-<span id="CSSAbout03"></span>
+> **图形：**通常由连续的线条或其他尖锐的颜色过渡组成，颜色数量相对较少（网站的Logo、草图、图表、大部分动画和图标都属于图形）
 
-### 3、CSS Hack原理及常用Hack ###
+> **照片：**通常拥有百万数量级的颜色，并且包含平滑的颜色过渡和渐变
+
+> **像素：**是图像中最小的信息单元
+
+> **RGB：**采用包含红（R）、绿（G）、蓝（B）的数量多少的方式来描述一个像素
+> 
+- R、G和B被称为**成分**（又称为通道）
+- 每种成分强度值范围在0~255之间
+- 经常在HTML和CSS中使用的是**十六位进制**的成分值，范围从00~FF
+	- 红：rgb(255,0,0)或#FF0000
+	- 蓝：rgb(0,0,255)或#0000FF
+	- 灰色阴影可能有着三个相同的成分值：rgb(238,238,238)或#EEEEEE
+
+> **真彩色图像：**使用RGB颜色模型可以展现多于1600万种颜色（256*256*256（或者2^24））可以得到16777216种组合，可以支持这么多颜色的图像格式叫做真彩色图像格式（比如JPEG和真彩色类型的JPEG）
+
+> **调色板：**为了在存储图像时节省空间，可以将图像中各种不同的颜色提取出来建立一个表，这个表通常叫做调色板（也可以称为索引）
+> 
+-  有了这个颜色表，就可以通过将调色板中的条目和每个像素重新匹配，达到重新绘制整个图像的目的
+-  调色板可以包含任意RGB颜色值，经常使用的调色板图像格式--GIF和PNG8--会限制调色板中最多只能包含256种颜色（不是从256中已经定义好的颜色中选择而是从1600+万的颜色选择你需要的值，但单个图像最多只能包含256种颜色）
+
+> **透明（RGBA）：**在RGB基础上做了扩展，额外的成分A代表alpha透明，值的范围从0~255（通常会将透明定义为从0%~100%的百分比，或者从0~127的值）
+
+> **alpha通道：**描述了透过图像像素可以看到下面内容的程度
+
+> **隔行扫描：**可以让用户在完整下载图像之前，看到图像的一个粗略版本（普通图像是逐行显示，从上到下每次显示一行，缓慢地向下递进）
+
+**GIF** 通常用来显示动画
+
+**JPEG** 更适合显示照片
+
+**PNG** 两者都适合
+
+**调色板PNG**(palette PNG)即 **PNG8** 显示图形比GIF会更好一些
+
+**> GIF（Graphics Interchange Format）**图形交换格式，是一种调色板图像格式
+
+- **透明** 允许一个二进制（是/否）类型的透明度。每个像素要么是完全透明的（不包含颜色），要么是完全不透明的（包含一个单色）。不支持alpha（可变的）透明
+- **动画** 支持动画。包含动画的图像由若干帧组成
+- **无损** 做修改保存关闭后不会损失任何质量
+- **逐行扫描** 生成文件时使用（LZW）压缩算法减小文件大小。会从上到下一行一行地对像素进行扫描，当图像在水平方向有很多重复颜色时，压缩效果最好
+- **隔行扫描** 支持可选的隔行扫描
+
+**> JPEG（Joint Photographic Experts Group）**联合图像专家小组，是照片存储的实际标准，能在高压缩文件中存储高分辨率的图像
+
+- **有损** 用户可以设置自定义质量级别，从0~100，就算设置为100，也同样会有一定程度的质量损耗
+	- 对图像进行多项编辑操作时，最好使用无损的图像格式保存中间结果，然后在完成所有修改后另存为JPEG格式，否则每次保存都会损耗一些质量
+	- 少数无损操作：
+		- 旋转（只在90度、180度、270的情况下）
+		- 裁剪
+		- 翻转（水平或垂直）
+		- 从标准模式切换到渐进模式
+		- 编辑图像的元数据
+- **透明和动画** 不支持透明或动画
+- **隔行扫描** 除了默认的标准JPEG（Baseline JPEG），还有一种渐进JPEG（Progressive JPEG），支持隔行扫描（IE不会逐步渲染渐进JPEG，而是在图像完全下载时立即全部显示）
+
+**> PNG（Portable Network Graphics）**便捷式网络图片。有调色板PNG（代替GIF）和真彩色PNG（代替JPEG）
+
+1.  **PNG8** 调色板PNG
+2.  **PNG24** 真彩色PNG，不包括alpha通道
+3.  **PNG32** 真彩色PNG，包括alpha通道 
+4.  包含alpha通道或不包含alpha通道的灰度PNG
+
+- **透明** 支持完全的alpha透明
+- **动画** 没有解决跨浏览器兼容
+- **无损** 多次编辑不会降低其质量，适合作为JPEG修改过程的中间产物
+- **逐行扫描** 对水平方向有重复颜色的图像压缩比更高
+- **隔行扫描** 比GIF更好的算法，支持隔行扫描的文件大小会更大一些
+
+> 和**GIF**比较：不支持动画以外，支持GIF所有功能。还支持alpha透明，并且压缩比更高，文件大小更小。应尽可能用PNG8代替GIF（例外是：颜色书很少的小图像，GIF压缩率更高，但此时应该把小图像放在CSS Sprite中，因为HTTP开销已经大大超过节省的那点带宽）
+
+> 和**JPEG**比较：图像颜色超过256种时，需要使用真彩色图像格式--真彩色PNG或JPEG。JPEG压缩比更高，且是照片存储的实际标准。由于JPEG是有损的，且清晰的颜色过渡周围会有大色块，以下情况更适合PNG：
+> 
+- 当图像的颜色略超过256中时，可以在不损耗任何**可见**质量的前提下，将图像转换为PNG8格式
+- 当“大色块”不可接受时，如包含很多颜色的图像或软件菜单的截图，这时使用PNG最好
+
+> 在IE6中：
+> 
+- 所有在**调色板PNG**中的半透明像素都会在IE6下显示为完整的透明
+	- PNG8可以在所有现代浏览器中实现“渐进增强”半透明图像效果，在IE6中降级为和GIF类似透明度的图像
+- **真彩色PNG**中的alpha透明像素，会显示为有背景色（通常是灰色）
+
+### <span id="CSSAbout04"></span>4、CSS Hack原理及常用Hack ###
 
 |标记|IE6|IE7|IE8|FF|Opera|Safari|
 |-----|-----|-----|-----|-----|-----|-----|
-|[*+><]|√|√|X|X|X|X|
-|_|√|X|X|X|X|X|
+|[+或>或<]|√|√|X|X|X|X|
+|_或*|√|X|X|X|X|X|
 |\9|√|√|√|X|X|X|
 |\0|X|X|√|X|√|X|
 |@media screen and(-webkit-min-device-pixel-ratio:0){.bb {}}|X|X|X|X|X|√|
@@ -1307,7 +1360,186 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 
 > **!important**不是hack手段
 
-### 4、CSS特殊性计算 ###
+**> 使用条件表达式过滤IE**
+
+> **条件注释**是一个特定的只能被IE所识别的HTML注释格式，所有的非IE浏览器都会直接忽略他们
+
+- **1、提供IE独有的样式表**
+	- 通过在条件注释中防止一个link标签或者@import指示符来引入一个IE独有的样式表，从而适配所有版本的IE
+
+    `<!--[if IE]>`
+
+    `<link rel="stylesheet" href="ie_all.css" type="text/css">`
+
+    `<![endif]-->`
+	
+	- 适配特定版本的IE，**lte** 代表“小于或等于”，**lt** 代表“小于”，**gte** 代表“大于或等于”，**gt** 代表“大于” 
+
+    `<!--[if lte IE 8]>`
+
+    `<link rel="stylesheet" href="ie_lte8.css" type="text/css">`
+
+    `<![endif]-->`
+
+	- 使用多行条件注释为每一个IE版本提供一个特定的样式表
+
+    `<!--[if IE 6]>`
+
+    `<link rel="stylesheet" href="ie_6.css" type="text/css">`
+
+    `<![endif]-->`
+
+    `<!--[if IE 7]>`
+
+    `<link rel="stylesheet" href="ie_7.css" type="text/css">`
+
+    `<![endif]-->`
+
+    `<!--[if IE 8]>`
+
+    `<link rel="stylesheet" href="ie_8.css" type="text/css">`
+
+    `<![endif]-->`
+
+	- 条件注释的缺点
+		- 额外的HTTP请求
+		- 对单一对象的规则定义将会分散在多个位置，难以维护
+		- 阻塞资源文件在IE8下的并行下载：使用条件注释将会导致IE8阻塞其他资源文件的下载，直到主样式表下载完成。这是IE8与生俱来的。**唯一解决办法：**在主样式表前面增加一个空的条件注释，或者在html标签下使用条件注释而不是到处使用 
+
+**2、对IE不可见**
+
+条件注释也可以用来使内容对IE不可见，这被称为**downlevel-revealed**条件注释
+
+    <!--[if !IE]>-->
+    <link rel="stylesheet" href="not_ie.css" type="text/css">
+    <!--<![endif]-->
+
+或者针对特定IE版本
+
+    <!--[if !IE 6]>-->
+    <link rel="stylesheet" href="not_ie6.css" type="text/css">
+    <!--<![endif]-->
+
+    `<!--[if gte IE 6]><!-->`
+    `<link rel="stylesheet" type="text/css" href="/css/modern.css" />`
+    `<!--<![endif]-->`
+
+**3、在html标签上添加IE版本类**
+
+用来为html标签添加一些类来指明当前具体是哪一个IE版本的浏览器，然后就可以在主样式表中为每个类添加特定的属性
+
+    <!--[if lt IE 7]><html class="ie6" lang="en"><![endif]-->
+    <!--[if IE 7]><html class="ie7" lang="en"><![endif]-->
+    <!--[if IE 8]><html class="ie8" lang="en"><![endif]-->
+    <!--[if IE 9]><html class="ie9" lang="en"><![endif]-->
+    <!--[if gt IE 9]><html lang="en"><![endif]-->
+    <!--[if !IE]>--><html lang="en"><!--<![endif]-->
+
+> 为何是html标签
+> 
+- 可以添加到body或某个div上，只要这个div能包裹其他所有元素的标签就可以。但会阻碍IE8下的样式表并行下载
+- 但html不会阻塞IE8下面的样式表的并行下载
+- 在HTML4和XHTML1中，类是不能被添加到html标签上的，但在html5下可以这样
+
+每个浏览器只会使用符合的那一条注释，忽略其余版本
+
+示例：
+
+    div {min-height: 100px;}
+    .ie6 div {height: 100px;}
+
+**> IE特有的layout布局**
+
+IE显示引擎利用布局减少它的处理开销（理想情况：所有元素都控制自己的尺寸和定位，IE只将布局应用于实际需要它的那些元素以减小性能开销）
+
+在IE中，那些**拥有布局**的元素负责本身及其子元素的尺寸设置和定位
+
+如果一个元素**没有拥有布局**，那么它的尺寸和位置由最近的拥有布局的祖先元素控制
+
+默认情况下**拥有布局**的元素：
+
+- body
+- html（标准模式中）
+- table
+- tr、td
+- img
+- hr
+- input、select、textarea、button
+- iframe、embed、object、applet
+- marque
+
+设置一下CSS属性使元素拥有布局：
+
+- float：left或right
+- display：inline-block
+- width：任何值
+- height：任何值
+- zoom：任何值（Microsoft属性--不能通过检验）
+- writing-mode：tb-rl（Microsoft属性--不能通过检验）
+
+IE中以下属性也是布局触发器
+
+- overflow：hidden、scroll或auto
+- min-width：任何值
+- max-width：除none之外的任何值
+
+**> 常见bug及修复**
+
+**1、双外边距浮动bug**
+
+- 应用：IE6及以下
+
+- 解释：使任何浮动元素的外边距加倍
+
+- 解决办法：
+	- 设置display：inline；（因为元素是浮动的，设置此属性值不会影响显示方式）
+
+**2、3像素文本便宜bug**
+
+- 应用：IE5、6
+
+- 解释：当文本与一个浮动元素相邻时，假设元素向左浮动，且不希望文本围绕浮动元素，那么可以设置文本的margin-left等于元素的宽度。但此时，文本和浮动元素之间就会多出3像素的间隙
+
+- 解决办法：
+	- 首先给文本设置任意高度，这回迫使文本元素拥有布局，这可以在表面上消除文本偏移（IE6及更低版本将height座位min-height对待，所以设置一个小高度不影响这些元素的实际尺寸。但会影响其他浏览器，所以要对处IE6及以下版本外的所有浏览器隐藏这个规则。最好把这些条件注释转移到单独的CSS文件中）`p {height: 1%;}`
+	- 因为拥有布局的元素会被限制为矩形，并且在浮动元素的旁边而不是下面，添加等于浮动元素宽度的像素实际会在浮动元素和段落之间产生这么多像素的间隙。为了避免间隙，需要将外边距重新设置为零 `p {height: 1%;margin-left: 0;}`
+	- 此时文本偏移被修复，但浮动元素上会出现3像素间隙，修复这个间隙可以在浮动元素上设置一个负的3像素右外边距  `p {height: 1%;margin-left: 0;}  .myFloat {margin-right: -3px;}`
+	- 如果浮动元素是除了图像之外的任何其他元素，那么以上步骤就已经修复完成了
+	- 如果浮动元素是图像：IE5.X在图像的左右都添加3像素的间隙，IE6不改变图像的外边距。因此支持IE5.X：`p {height: 1%;margin-left: 0;}  .myFloat {margin-right: 0 -3px;}`，IE6：`p {height: 1%;margin-left: 0;}  .myFloat {margin: 0;}`
+
+**3、IE6的重复字符bug**
+
+- 应用：IE6
+
+- 解释：一系列浮动元素的最后一个元素中的最后几个字符会在浮动元素下面重复出现（当在一系列浮动元素的第一个和最后一个元素之间有多个注释时，前两个注释没有影响，但是后续的每个注释会导致两个字符重复出现，所以，3个注释会导致两个重复字符，4个注释会导致4个重复字符，5个注释会导致6个重复字符）
+
+- 解决办法：
+	- 设置负的右外边距从最后一个浮动元素上去掉3像素，或者使容器扩大3像素，但会在没有这个bug的IE7中造成问题
+	- 最容易最安全的方法是从HTML代码中删除注释
+
+**4、IE6中的“藏猫猫”bug**
+
+- 应用：IE6
+
+- 解释：一个浮动元素后面跟着一些非浮动元素，然后是一个清理元素，所有这些元素都包含在一个设置了背景颜色或图像的父元素中。如果清理元素碰到了浮动元素，那么重建的非浮动元素看起来消失了，隐藏到了父元素的背景颜色或图像后面，只有在刷新页面时才重新出现
+
+- 解决办法：
+	- 去掉父元素的背景颜色或图像（往往不可行）
+	- 避免清理元素与浮动元素接触
+	- 如果容器元素应用了特定的尺寸，这个bug不会出现
+	- 如果给容器指定行高，这个bug也不会出现
+	- 将浮动元素和容器元素的position属性设置为relative也会减轻这个问题
+
+**5、相对容器的绝对定位**
+
+- 应用：IE6及更低版本
+
+- 解释：相对定位的元素没有获得hasLayout属性，他们不创建新的定位上下文，所有绝对定位元素就不会以相对定位元素来定位了，而是以视口进行定位
+
+- 解决办法：
+	- 使用条件注释过滤IE5和IE6：为容器提供一个任意高度。这可以让容器拥有布局，而且IE6及以下会不正确的扩展以适应他们的内容，所以设置小的高度不会影响实际高度 `.container {height: 1%;}`
+
+### <span id="CSSAbout05"></span>5、CSS特殊性计算 ###
 
 > **继承（Inheritance）**是从一个元素向其后代元素传递属性值所采用的机制
 
@@ -1398,13 +1630,57 @@ Almost Standards （近似标准）模式（Mozilla/Netscape 6新增的一种模
 - 非CSS提示被处理为特殊性为0，并出现在创作人员样式表的最前面
 - 只要有创作人员或读者样式，这种表现提示就会被覆盖，但是用户代理的样式不能将其覆盖
 
-<span id="JSAbout"></span>
+### <span id="CSSAbout06"></span>6、CSS中常用的颜色单位 ###
 
-##  > 常见问题 ##
+1. **HEX：**#A6DADC（颜色值得十六进制）
+2. **RGB：**166，218，220
+3. **RGBA：**166，218，220，1
+4. **HSL：**182，44%，76%
+5. **HSLA：**182，44%，76%，.2
 
-<span id="JSAbout01"></span>
+RGBA：前三个参数分别是红色、绿色和蓝色的强度值，取值从0~255或0%~100%
 
-### 1、元素中的属性及存放位置 ###
+HSLA：前三个参数分别是色调（0~360）、饱和度（0%~100%）和亮度（0%~100%）
+
+RGBA和HSLA的第四个参数都是透明度，取值从0（完全透明）到1（完全不透明）
+
+> **opacity**的作用是使整个元素都半透明，包括前景内容，而不仅仅是背景
+
+**HSL/HSLA**色彩速查表：
+
+色调值：
+
+- 0或360=红色（red）
+- 30=橙色（orange）
+- 60=黄色（yellow）
+- 120=绿色（green）
+- 180=青色（cyan）
+- 240=蓝色（blue）
+- 270=紫色（purple）
+- 300=紫红色（magenta）
+
+- 黑色（black）=将亮度设置为0%，白色（white）=将亮度设置为100%。色调和饱和度可以任意取值
+- 灰色（gray）=将饱和度设置为0%。此时亮度控制灰色的明暗度，色调取值无关紧要
+
+### <span id="CSSAbout07"></span>7、如果设计中使用了非标准的字体，你该如何去实现？ ###
+
+**@font-face** 是链接服务器上的字体的一种方式（就像指定图片链接一样），浏览器根据这条指令把对应的字体文件下载到本地缓存，使用它修饰文本。
+
+这通常被称为 <tt>字体嵌入</tt>
+
+    @font-face {
+		font-family: Raleway;
+		src: url(fonts/raleway_thin.otf);
+	}
+	h1 {
+		font-family: Raleway, "HelveticaNeueLt Std Thin", "HelveticaNeueLt Neue Light", "HelveticaNeueLt-Light", "HelveticaNeueLt Neue", "Helvetica, Arial, sans-serif";	
+	}
+
+这告诉浏览器使用 <tt>raleway_thin.otf</tt> 字体文件渲染h1，如果浏览器不支持 <tt>@font-face</tt> ,或者因为某些原因无法下载字体文件，则继续从 字体栈（在font-family属性中声明的字体列表）中按顺序从用户机器加载这些字体，直到找到一个可用的字体为止 
+
+## <span id="JSAbout"></span> > JavaScript常见问题 ##
+
+### <span id="JSAbout01"></span>1、元素中的属性及存放位置 ###
 
 HTML4.01定义的属性：
 
@@ -1444,9 +1720,7 @@ HTML4.01定义的属性：
 
 - 如果放在`<head>`元素中，那必须等到全部js代码都被下载、解析、执行完成以后才能可是呈现页面内容（浏览器在遇到`<body>`标签时才开始呈现内容），这会导致页面延迟，并是窗口一片空白
 
-<span id="JSAbout02"></span>
-
-### 2、相等(==)和全等(===)操作符判断相等的流程是怎样的？ ###
+### <span id="JSAbout02"></span>2、相等(==)和全等(===)操作符判断相等的流程是怎样的？ ###
 
 1. **相等和不想等**
 
@@ -1494,7 +1768,7 @@ HTML4.01定义的属性：
 
 如果指向相同对象、数组、函数，他们相等
 
-### 3、JavaScript中有哪些方法定义对象？ ###
+### <span id="JSAbout03"></span>3、JavaScript中有哪些方法定义对象？ ###
 
 1. 构造函数法
 
@@ -1514,4 +1788,44 @@ HTML4.01定义的属性：
 
 3. Object.create()
 
-  
+### <span id="JSAbout04"></span>4、<,>,<=,>=的比较规则？ ###
+
+这几个操作符都返回一个**布尔值**
+
+在进行比较时使用的相应规则：
+
+- 如果都是数值，则执行数值比较
+- 如果都是字符串，则比较两个字符串对应的字符编码值
+- 如果一个是数值，则将另一个转换为数值，然后执行数值比较
+- 如果一个对象，则调用这个对象的valueOf()方法，用得到的结果按前面的规则执行比较。如果对象没有valueOf()方法，则调用toString()方法，用得到的结果按前面的规则进行比较
+- 如果一个是布尔值，则先将其转换为数值，然后再比较
+
+> 在比较两个字符串时，实际比较的是两个字符串中对应位置的每个字符的**字符编码值**，而不是在字母表中的位置。字符编码：**大写字母全部小于小写字母**
+
+- 如：`var result = "Brick" < "alphabet"   //true`
+- 如果要真正按字母表顺序比较，则应把两个字符串转换为相同的大小写形式（全部大写或全部小写）
+	- `var result = "Brick".toLowerCase() < "alphabet".toLowerCase();   //false`
+
+> 在比较两个数字字符串时，也是比较的字符编码
+
+- 如： `var result = "23" < "3"   //true`  （"2"的字符编码是50，"3"的字符编码是51）
+- 如果其中一个为数值，则比较结果正常：`var result = "23" < 3`（字符串"23"会被转换成数值23）
+- 如果和数值比较的字符串不能转换成数值，则返回false
+	- `var result = "a" < 3;   //false,因为"a"被转换成了NaN`
+	- **任何操作数与NaN进行关系比较，结果都是false**
+
+### <span id="JSAbout05"></span>5、+运算符的工作流程 ###
+
+- 如果两个操作数都是数值，执行常规加法算法，然后根据以下规则返回结果：
+	- 其中一个是NaN，则结果是NaN
+	- Infinity加Infinity，结果是Infinity
+	- -Infinity加-Infinity，结果是-Infinity
+	- Infinity加-Infinity，结果是NaN
+	- +0加+0，结果是+0
+	- -0加-0，结果是-0
+	- +0加-0，结果是+0
+- 如果一个操作数是字符串，则：
+	- 如果两个都是字符串，则将第一个和第二个操作数拼接起来
+	- 如果只有一个操作数是字符串，则将另一个转换为字符串，再拼接起来
+	- 如果一个操作数是对象、数值或布尔值，则调用他们的toString()方法，取得相应字符串值，再应用前面的规则
+	- 对于null和undefined，则调用他们的String()方法并取得字符串"null"和"undefined"

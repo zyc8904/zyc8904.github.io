@@ -8,7 +8,7 @@ layout: default
 	{% for post in site.posts %}
 		<li class="post-li">
 		<!--显示时间-->
-		<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+		<time class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</time>
 		<!--文章标题-->
 		<h2>
 			<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>

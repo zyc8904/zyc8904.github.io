@@ -14,13 +14,13 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$title-color:      #474747;
 $background-color: #fdfdfd;
 $brand-color:      rgba(0,0,0,0.6);
 $selection-color:  #EF5875;
 
-$green-color:      #159957;
-$green-color-dark: darken($green-color, 10%);
+$text-color:      #343434;
+$text-color-light: lighten($text-color, 10%);
 
 $blue-color:       #155799;
 

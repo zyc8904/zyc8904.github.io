@@ -30,7 +30,16 @@ body {
     font-kerning: normal;
 }
 
-
+/**
+* :target selector
+*/
+:target:before {
+    font: 100% Arial,"Nimbus Sans L",sans-serif !important;
+    content: "\2691";  /* ⚑ */
+    color: $selection-color;
+    margin-right: 5px;
+    display: inline-block;
+}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
