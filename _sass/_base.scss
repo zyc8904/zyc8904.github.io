@@ -9,17 +9,11 @@ dl, dd, ol, ul, figure {
 }
 
 /**
-*页面选中文字变为红色
-*/
-::selection {
-	color: $selection-color;
-}
-
-/**
  * Basic styling
  */
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    font-size: calc(100% + 4 * (100vw - 600px) / 400);
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -28,6 +22,24 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+/**
+* 为IE9以下兼容语意元素
+*/
+article, aside, figure, figcaption, footer,
+header, main, nav, section, summary {
+    display: block;
 }
 
 /**
@@ -42,16 +54,15 @@ body {
 }
 
 /**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+*页面选中文字变为红色
+*/
+::selection {
+	color: $selection-color;
 }
 
-
+mark {
+    background-color: hsla(348, 83%, 64%, .3); 
+}
 
 /**
  * Images
@@ -60,8 +71,6 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
-
-
 
 /**
  * Figures
