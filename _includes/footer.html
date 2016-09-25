@@ -31,19 +31,9 @@
 </footer>
 
 <!--Javascript-->
-<script src="{{ "/javascripts/jquery-2.1.1.js" | prepend: site.baseurl }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ "/javascripts/jquery-2.1.1.js" | prepend: site.baseurl }}" charset="utf-8"></script>
+<script src="http://localhost:4000/javascripts/custom.js"></script>
 <script type="text/javascript">
-    //loading bar
-    $({property: 0}).animate({property: 100},{
-				duration: 1750,
-				step: function(){
-					var percentage = Math.round(this.property);
-					$("#progress").css("width", percentage+"%");
-					if(percentage == 100){
-						$("#progress").addClass("done");
-					}
-				}
-			});	
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     var duoshuoQuery = {short_name:"pwnnyblog"};
       (function() {

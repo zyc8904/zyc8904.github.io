@@ -7,7 +7,7 @@
 
 // Our variables
 $base-font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
+$base-font-size:   1.8rem;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -18,11 +18,10 @@ $title-color:      #474747;
 $background-color: #fdfdfd;
 $brand-color:      rgba(0,0,0,0.6);
 $selection-color:  #EF5875;
+$selection-color-light: lighten($selection-color, 10%);
 
 $text-color:       #343434;
 $text-color-light: lighten($text-color, 10%);
-
-$blue-color:       #155799;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
@@ -31,20 +30,10 @@ $grey-color-light-heading: lighten($grey-color, 5%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 // Width of the content area
-$content-width:    800px;
-
+$content-width:    1200px;
 $on-palm:          600px;
 $on-laptop:        800px;
 
-
-
-// Use media queries like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
         @content;
