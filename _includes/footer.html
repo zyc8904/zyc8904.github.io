@@ -32,7 +32,7 @@
 
 <!--Javascript-->
 <script src="{{ "/javascripts/jquery-2.1.1.js" | prepend: site.baseurl }}" charset="utf-8"></script>
-<script src="http://localhost:4000/javascripts/custom.js"></script>
+<script src="{{ "/javascripts/custom.js" | prepend: site.baseurl }}" charset="utf-8"></script>
 <script type="text/javascript">
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     var duoshuoQuery = {short_name:"pwnnyblog"};
@@ -45,8 +45,4 @@
         || document.getElementsByTagName('body')[0]).appendChild(ds);
       })();
     <!-- 多说公共JS代码 end -->
-		//console.log信息
-		console.group("Pwnny.bar");
-    console.log("%c如果你觉得我的网站对你有帮助，请把它推荐给更多的人吧","font-size:18px;font-family:Microsoft YaHei;color:#6FBCBD;");
-    console.log("%cIf you think of my site to help you, please recommend it to more people","font-size:18px;font-family:Microsoft YaHei;color:#6FBCBD;");
 </script>

@@ -33,6 +33,9 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
 }
 
 /**
@@ -49,11 +52,11 @@ ul, ol, dl, figure,
 * @font-face
 */
 @font-face {font-family: 'iconfont';
-    src: url('http://localhost:4000/assets/iconfont/ux_1474723437_745774/iconfont.eot'); /* IE9*/
-    src: url('http://localhost:4000/assets/iconfont/ux_1474723437_745774/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('http://localhost:4000/assets/iconfont/ux_1474723437_745774/iconfont.woff') format('woff'), /* chrome、firefox */
-    url('http://localhost:4000/assets/iconfont/ux_1474723437_745774/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url('http://localhost:4000/assets/iconfont/ux_1474723437_745774/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+    src: url('http://pwnny.cn/assets/iconfont/ux_1474723437_745774/iconfont.eot'); /* IE9*/
+    src: url('http://pwnny.cn/assets/iconfont/ux_1474723437_745774/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('http://pwnny.cn/assets/iconfont/ux_1474723437_745774/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('http://pwnny.cn/assets/iconfont/ux_1474723437_745774/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('http://pwnny.cn/assets/iconfont/ux_1474723437_745774/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont{
