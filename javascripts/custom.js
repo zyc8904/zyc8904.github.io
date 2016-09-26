@@ -10,28 +10,10 @@ $({property: 0}).animate({property: 100},{
     }
 });	
 
-//backTop
-// var backTopElement = document.querySelector("#backTop");
-// var backTopPseudoElement = document.defaultView.getComputedStyle(backTopElement,":before");
-// var windowPosition = document.body.scrollTop;
-// window.onscroll = function() {
-//     if (windowPosition > window.innerHeight) {
-//         backTopElement.style.display = 'block';
-//         // backTopPseudoElement.display = 'block';
-//     } else {
-//         backTopElement.style.display = 'none';
-//     }
-// }
-
-// backTopElement.onclick = function(event) {
-//     document.body.scrollTop = 0;
-// }
-// var timer = window.setInterval(function(){
-//       document.body.scrollTop-=100;
-//    if(document.body.scrollTop<=0){
-//        document.body.scrollTop=0;
-//         window.clearInterval(timer);
-//       }},5);
+//console.log信息
+console.group("Pwnny.bar");
+console.log("%c如果你觉得我的网站对你有帮助，请把它推荐给更多的人吧","font-size:18px;font-family:Microsoft YaHei;color:#6FBCBD;");
+console.log("%cIf you think of my site to help you, please recommend it to more people","font-size:18px;font-family:Microsoft YaHei;color:#6FBCBD;");
 
 
 
