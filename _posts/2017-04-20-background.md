@@ -96,55 +96,109 @@ background-position相对于元素的内边距边界（即border与内边距的�
 **值：**
 长度值 | 百分数值 | auto | cover | contain | inherit
 
-百分数值和长度值都是先水平后垂直
+**初始值：** auto auto
 
-- 一个值：被用作背景宽度，高度默认为auto
-- 两个值：第一个为背景宽度，第二个为背景高度
+**继承性：** 无
 
-**初始值：**
+**先设置了background-size，后面的background里没有设置此属性的话，则会被后面申明的background里默认的background-size：auto auto覆盖(即先前的background-size不起作用)**
 
-**继承性：**
+百分数值和长度值都是先水平后垂直(不能为负值)
+
+- **一个值：** 这个值被用作背景宽度，高度默认为auto
+- **两个值：** 第一个为背景宽度，第二个为背景高度
+- 设置多背景时用 **逗号分隔**
+
+**百分数值：** 相对于背景区的百分比，默认为内边距边界(可通过background-origin改变背景区)。如果attachment为fixed，背景区为浏览器可视区，不包括滚动条
+
+**auto：** 以背景图片的比例缩放背景图片
+
+**cover：** 缩放(保留原始比例)背景图片以完全覆盖背景区，可能背景图片部分看不见
+
+**contain：** 缩放(保留原始比例)背景图片以完全装入背景区，可能背景区部分空白
 
 ### <span id="repeat"></span> 4、background-repeat ###
 
 **值：**
+repeat | repeat-x | repeat-y | no-repeat | space | round | inherit
 
-**初始值：**
+**初始值：** repeat
 
-**继承性：**
+**继承性：** 无
+
+可以写单值也可以写双值：
+
+单值 | 等价于双值
+repeat-x | repeat no-repeat
+repeat-y | no-repeat repeat
+repeat | repeat repeat
+space | space space
+round | round round
+no-repeat | no-repeat no-repeat
+
+**space：** 
+- 图像不会被裁剪并尽可能重复，第一和最后一个图像始终被固定在相应边上，图像之间会以空白填充
+- background-position会被忽略，除非只有一个图像能被无裁剪的显示
+- 如果图像太大而没有足够空间完整显示，则图像会被裁剪
+
+**round：** 重复的背景图像将会没有空隙的随着空间的增大缩小而被压缩或伸展，使得更多的图像被填充或减少
 
 ### <span id="origin"></span> 5、background-origin ###
 
-**值：**
+**值：** border-box | padding-box | content-box | inherit
 
-**初始值：**
+**初始值：** padding-box
 
-**继承性：**
+**继承性：** 无
+
+规定了**background-image**(注意不是背景区，不包括background-color)的相对原点位置
+
+当background-attachment为fixed时，图像相对于可视区固定，该属性被忽略
+
+三个关键字规定了背景图像从border、padding还是content底下开始绘制
 
 ### <span id="clip"></span> 6、background-clip ###
 
-**值：**
+**值：** border-box | padding-box | content-box | inherit
 
-**初始值：**
+**初始值：** border-box
 
-**继承性：**
+**继承性：** 无
+
+规定了从哪里裁切背景区(包括背景图像和背景色)进行显示
+
+
 
 ### <span id="attachment"></span> 7、background-attachment ###
 
-**值：**
+**值：** scroll | fixed | local | inherit
 
-**初始值：**
+**初始值：** scroll
 
-**继承性：**
+**继承性：** 无
+
+**fixed：** 背景图片相对于视口固定，即使元素本身可以滚动，背景图片也不会随着元素内容滚动(不过，背景将只在其包含元素中可见)
+
+**local：** 背景图片相对于元素的内容固定(背景绘制和定位区域相对于**可滚动的区域**而不是包含元素本身的框)，元素本身可以滚动，则背景图片也会随着滚动
+
+**scroll：**背景图片相对于元素本身固定，不随内容而滚动
 
 ### <span id="color"></span> 8、background-color ###
 
-**值：**
+**值：** color | transparent | currentColor | inherit
 
-**初始值：**
+**初始值：** transparent
 
-**继承性：**
+**继承性：** 无
+
+**currentColor：** 和当前color属性的值相同
 
 ## <span id="logogram"></span> > background简写属性 ##
 
+**注意1：** background将指定的背景属性设为明确给定的值，将没有指定的背景属性设为初始值
+
+**注意2：** background-color只能在最后一个background中定义，否则后面没有定义background-color的background就被把background-color置为默认: transparent
+
+**注意3：**除了background-size必须定义在background-position之后，并使用'/'符号分隔之外，其他属性的顺序可以随意写
+
+	background: linear-gradient(white 15px, hsla(0,0%,100%,0)) 0 top / 100% 15px
 
