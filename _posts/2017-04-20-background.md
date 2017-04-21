@@ -144,7 +144,8 @@ no-repeat | no-repeat no-repeat
 
 ### <span id="origin"></span> 5、background-origin ###
 
-**值：** border-box | padding-box | content-box | inherit
+**值：** 
+border-box | padding-box | content-box | inherit
 
 **初始值：** padding-box
 
@@ -158,7 +159,8 @@ no-repeat | no-repeat no-repeat
 
 ### <span id="clip"></span> 6、background-clip ###
 
-**值：** border-box | padding-box | content-box | inherit
+**值：** 
+border-box | padding-box | content-box | inherit
 
 **初始值：** border-box
 
@@ -170,7 +172,8 @@ no-repeat | no-repeat no-repeat
 
 ### <span id="attachment"></span> 7、background-attachment ###
 
-**值：** scroll | fixed | local | inherit
+**值：** 
+scroll | fixed | local | inherit
 
 **初始值：** scroll
 
@@ -184,7 +187,8 @@ no-repeat | no-repeat no-repeat
 
 ### <span id="color"></span> 8、background-color ###
 
-**值：** color | transparent | currentColor | inherit
+**值：** 
+color | transparent | currentColor | inherit
 
 **初始值：** transparent
 
