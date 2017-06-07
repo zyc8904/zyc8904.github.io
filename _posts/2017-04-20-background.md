@@ -206,3 +206,5 @@ color | transparent | currentColor | inherit
 
 	background: linear-gradient(white 15px, hsla(0,0%,100%,0)) 0 top / 100% 15px
 
+**注意4：**background-origin和background-clip属性，如果background中只有一个描述盒模型区域属性(background: ... content-box ...;)，那么就同时应用在这两个属性上；如果有两个描述盒模型区域属性(background: ... content-box padding-box ...;)，那么第一个设置background-origin，第二个设置background-clip
+
